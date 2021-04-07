@@ -8,6 +8,10 @@ name: "Home"
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+$red:red;
 
+h1{
+  color: $red;
+}
 </style>
