@@ -1,9 +1,15 @@
 <template>
   <div id="app">
+    <!--Added simple routes, Chris-->
+    <v-app-bar>
+      <router-link to="/">Home</router-link>
+      <router-link to="/ContactUs">Contact Us</router-link>
+    </v-app-bar>
+    <!---->
     <v-app>
       <v-main>
         <v-container>
-          <router-view/>
+          <router-view />
         </v-container>
       </v-main>
     </v-app>
@@ -11,11 +17,10 @@
 </template>
 
 <script>
-
 export default {
-  name: 'App',
-  components: {}
-}
+  name: "App",
+  components: {},
+};
 </script>
 
 <style>
