@@ -96,9 +96,9 @@
                     >
                       Menu de la semaine
                       <v-img
-                        max-height="200"
-                        max-width="200"
-                        src="./src/assets/photomenu.png"
+                        max-height="850"
+                        max-width="700"
+                        src="photomenu.png"
                       ></v-img>
                     </div>
                   </div>
