@@ -29,7 +29,7 @@
                           role="listitem"
                           class="v-list-item v-list-item--link theme--light"
                         >
-                        <!--Days of the week-->
+                          <!--Days of the week-->
                           <div class="v-list-item__content">
                             <div class="v-list-item__title">Lundi</div>
                           </div>
@@ -81,9 +81,7 @@
                           class="v-list-item v-list-item--link theme--light grey--text text--lighten-4"
                         >
                           <div class="v-list-item__content">
-                            <div class="v-list-item__title">
-                              Suivant
-                            </div>
+                            <div class="v-list-item__title">Suivant</div>
                             <p>(Disponible dès Mercredi)</p>
                           </div>
                         </div>
@@ -95,11 +93,13 @@
                     <div
                       class="v-sheet theme--light rounded-lg"
                       style="min-height: 70vh"
-                    >Menu de la semaine
+                    >
+                      Menu de la semaine
                       <v-img
                         max-height="200"
                         max-width="200"
-                        src="../asets/photomenu.png"></v-img>
+                        src="./src/assets/photomenu.png"
+                      ></v-img>
                     </div>
                   </div>
                 </div>
