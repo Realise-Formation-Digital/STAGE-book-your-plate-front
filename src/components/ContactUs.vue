@@ -43,6 +43,8 @@
               required
             ></v-text-field>
           </v-col>
+          <v-btn
+          color="blue lighten-4">Send</v-btn>
         </v-row>
       </v-container>
     </v-form>
