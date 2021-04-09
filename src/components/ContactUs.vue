@@ -77,17 +77,16 @@ export default {
 
   methods: {
     async submit() {
-
-      const axios = require('axios');
-
       console.log("This",this.firstname, this.lastname, this.comment, this.email);
+      /*
+      const axios = require('axios');
       const result = await axios.post('/feddback', {
         comment: this.comment,
         email:this.email,
         lastName: this.lastname,
         name: this.name,
       })
-      /*
+      
       if (result.status === 200) {
 
       }else{
@@ -95,7 +94,7 @@ export default {
       }
       */
 
-      console.log("Response server", result)
+      console.log("Response server")
 
 
     },

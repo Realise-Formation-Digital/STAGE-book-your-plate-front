@@ -1,9 +1,18 @@
 <template>
   <div id="app">
     <!--Added simple routes, Chris-->
-    <v-app-bar>
-      <router-link to="/">Home</router-link>
-      <router-link to="/ContactUs">Contact Us</router-link>
+    <v-app-bar
+      absolute>
+      <v-btn
+      depressed
+      color="primary">
+        <router-link to="/">Home</router-link>
+      </v-btn>
+      <v-btn
+      depressed
+      color="error">
+        <router-link to="/ContactUs">Contact Us</router-link>
+      </v-btn>
     </v-app-bar>
     <!---->
     <v-app>
@@ -13,6 +22,11 @@
         </v-container>
       </v-main>
     </v-app>
+    <v-footer padless>
+      <v-col class="text-center" cols="12">
+        {{ new Date().getFullYear() }} — <strong>Vuetify</strong>
+      </v-col>
+    </v-footer>
   </div>
 </template>
 

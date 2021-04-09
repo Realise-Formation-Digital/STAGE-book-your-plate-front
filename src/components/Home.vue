@@ -94,12 +94,9 @@
                       class="v-sheet theme--light rounded-lg"
                       style="min-height: 70vh"
                     >
-                      Menu de la semaine
-                      <v-img
-                        max-height="850"
-                        max-width="700"
-                        src="photomenu.png"
-                      ></v-img>
+                      <h1>Menu de la semaine</h1>
+                      <h2>Lundi</h2>
+                      <p id="menuLundi"></p>
                     </div>
                   </div>
                 </div>
@@ -115,6 +112,17 @@
 <script>
 export default {
   name: "Home",
+
+  data: () => ({
+    id: 1,
+    description: "Steak Frites",
+    deliverydate: "01.05.2021",
+    price: 11 + "chf",
+    specialinfo: "",
+    img: "photo",
+    typePlat: "plat",
+    timestamp: "Get time",
+  }),
 };
 </script>
 
