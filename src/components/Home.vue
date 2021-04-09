@@ -29,6 +29,7 @@
                           role="listitem"
                           class="v-list-item v-list-item--link theme--light"
                         >
+                        <!--Days of the week-->
                           <div class="v-list-item__content">
                             <div class="v-list-item__title">Lundi</div>
                           </div>
@@ -89,6 +90,7 @@
                       </div>
                     </div>
                   </div>
+                  <!--Container for display-->
                   <div class="col">
                     <div
                       class="v-sheet theme--light rounded-lg"
