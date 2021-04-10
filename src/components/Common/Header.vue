@@ -11,17 +11,17 @@
     </div>
     <div class="container2">
       <!-- Navigation -->
-      <div class="Navigation, router">
+      <div class="Navigation">
         <router-link to="/">
           <h2 class="router">About us</h2>
         </router-link>
 
         <router-link to="/">
-          <h2 >login</h2>
+          <h2 class="router">login</h2>
         </router-link>
 
         <router-link to="/">
-          <h2 >Feedback</h2>
+          <h2 class="router">Feedback</h2>
         </router-link>
       </div>
     </div>
