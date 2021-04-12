@@ -4,52 +4,47 @@
       src="https://cdn.vuetifyjs.com/images/parallax/material.jpg"
     ></v-parallax>
 
-    <section>
-      <h2 class="presentation">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-        velit esse cillum dolore eu fugiat nulla pariatur.
-      </h2>
-    </section>
+      <v-container >
+        <h2 class="presentation" align="center" justify="center">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+          pariatur.
+        </h2>
+      </v-container>
+
 
     <section class="blackBlock">
-      <h2 class="menuTitle"><em>Menu de la semaine:</em></h2>
-      <v-simple-table dark class="menuTable">
-        <template v-slot:default>
-          <thead>
-            <tr>
-              <th class="text-left">
-                Jours
-              </th>
-              <th class="text-left">
-                Plats
-              </th>
-              <th class="text-left">
-                Desserts
-              </th>
-            </tr>
-          </thead>
+      <v-container>
+        <h2 class="menuTitle"><em>Menu de la semaine:</em></h2>
+        <v-row align="center" justify="center">
+          <v-col
+            v-for="(menu, index) in menus"
+            :key="index"
+            cols="12"
+            sm="6"
+            md="6"
+            lg="2"
+          >
+            <v-card class="mx-auto" max-width="400">
+              <v-card-title>{{ menu.day }}</v-card-title>
 
-          <tbody>
-            <tr v-for="(menu, index) in menus" :key="index">
-              <td class="days">{{ menu.day }}</td>
-              <td>
-                <p v-for="(meal, index) in menus[index].meal" :key="index">
-                  {{ menu.meal[index] }}
-                </p>
-              </td>
+              <v-card-subtitle class="pb-0 overline mb-4">
+                12 avril
+              </v-card-subtitle>
 
-              <td>{{ menu.dessert }}</td>
-            </tr>
-          </tbody>
-          <h2 style="padding: 15px 0px 0px 30px"><em>Prix: </em></h2>
-        </template>
-      </v-simple-table>
-      <div style="text-align: center">
-        <v-btn elevation="2">Reserver</v-btn>
-      </div>
+              <v-card-text class="text--primary">
+                <div>{{ menu.meal }}</div>
+              </v-card-text>
+            </v-card>
+          </v-col>
+        </v-row>
+        <div style="text-align: center; padding: 40px 0px 40px 0px">
+          <v-btn elevation="2">Reserver</v-btn>
+        </div>
+      </v-container>
     </section>
   </v-content>
 </template>
@@ -63,27 +58,32 @@ export default {
       menus: [
         {
           day: "Lundi",
-          meal: ["test 1", "test 2", "test 3"],
+          meal:
+            "Escalope de dinde viennoise, Pommes de terre frite, Brocolis vapeur",
           dessert: "dessert",
         },
         {
           day: "Mardi",
-          meal: ["test 1", "test 2", "test 3"],
+          meal:
+            "Escalope de dinde viennoise, Pommes de terre frite, Brocolis vapeur",
           dessert: "dessert",
         },
         {
           day: "Mercredi",
-          meal: ["test 1", "test 2", "test 3"],
+          meal:
+            "Escalope de dinde viennoise, Pommes de terre frite, Brocolis vapeur",
           dessert: "dessert",
         },
         {
           day: "Jeudi",
-          meal: ["test 1", "test 2", "test 3"],
+          meal:
+            "Escalope de dinde viennoise, Pommes de terre frite, Brocolis vapeur",
           dessert: "dessert",
         },
         {
           day: "Vendredi",
-          meal: ["test 1", "test 2", "test 3"],
+          meal:
+            "Escalope de dinde viennoise, Pommes de terre frite, Brocolis vapeur",
           dessert: "dessert",
         },
       ],
@@ -113,7 +113,7 @@ p {
 }
 
 .presentation {
-  padding: 150px 35% 120px 12%;
+  padding: 80px 0 80px 0%;
 }
 
 .blackBlock {
@@ -122,7 +122,7 @@ p {
 }
 
 .menuTitle {
-  padding: 100px 0px 70px 10%;
+  padding: 70px 0px 50px 10%;
 }
 
 .menuTable {
