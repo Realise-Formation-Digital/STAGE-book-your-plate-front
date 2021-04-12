@@ -1,11 +1,15 @@
 <template>
-  <h1>Footer</h1>
+  <v-footer padless>
+    <v-col class="text-center" cols="12">
+      {{ new Date().getFullYear() }} — <strong>Vuetify</strong>
+    </v-col>
+  </v-footer>
 </template>
 
 <script>
 export default {
-name: "Footer"
-}
+  name: "Footer",
+};
 </script>
 
 <style scoped>

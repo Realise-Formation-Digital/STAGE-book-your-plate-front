@@ -8,6 +8,11 @@
       color="primary">
         <router-link to="/">Home</router-link>
       </v-btn>
+            <v-btn
+      depressed
+      color="error">
+        <router-link to="/Booking">Booking</router-link>
+      </v-btn>
       <v-btn
       depressed
       color="error">

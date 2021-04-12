@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from "@/components/Home"
+import Booking from "@/components/Booking";
 import ContactUs from "@/components/ContactUs";
 
 Vue.use(VueRouter)
@@ -12,6 +13,7 @@ Vue.use(VueRouter)
 // We'll talk about nested routes later.
 const routes = [
   { path: '/', component: Home },
+  { path: '/Booking', component: Booking },
   { path: '/ContactUs', component: ContactUs }
 ]
 
