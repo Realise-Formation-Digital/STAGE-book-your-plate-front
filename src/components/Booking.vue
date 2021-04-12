@@ -51,14 +51,12 @@
                         ></v-textarea>
                       </v-card>
 
-                      <v-col cols="12" md="6">
-                        <v-textarea
-                          solo
-                          name="input-7-4"
-                          label="Commentaire"
-                        ></v-textarea>
-                      </v-col>
-
+                      <v-textarea
+                        solo
+                        name="input-7-4"
+                        label="Commentaire"
+                      ></v-textarea>
+                        <v-card>Résumé Commande:</v-card>
                       <v-btn @click="submit()">Envoyer</v-btn>
                     </div>
                   </div>
