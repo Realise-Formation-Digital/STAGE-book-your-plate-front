@@ -1,71 +1,67 @@
 <template>
   <div>
-    <h1>Réservation</h1>
-
-    <div style="transform-origin: center top 0px">
-      <div
-        data-app="true"
-        class="v-application v-application--is-ltr theme--light"
-        id="inspire"
-        file="wireframes/constrained"
-      >
-        <div class="v-application--wrap">
-          <main
-            class="v-main grey lighten-3"
-            data-booted="true"
-            style="padding: 64px 0px 0px"
-          >
-            <div class="v-main__wrap">
-              <div class="container">
-                <div class="row">
-                  <!--Container for display-->
-                  <div class="col">
-                    <div
-                      class="v-sheet theme--light rounded-lg"
-                      style="min-height: 50vh"
+    <div class="v-application--wrap">
+      <main class="v-main grey lighten-3" data-booted="true">
+        <div class="v-main__wrap">
+          <div class="container">
+            <div class="row">
+              <div class="col">
+                <div
+                  class="v-sheet theme--light rounded-lg"
+                  style="min-height: 50vh"
+                >
+                  <h1>Votre réservation</h1>
+                  <!--Day selector-->
+                  <v-col cols="12" md="12">
+                    <v-select
+                      :items="items"
+                      @change="selectPlate($event)"
+                      label="Choisisez votre jour:"
+                      outlined
+                    ></v-select>
+                  </v-col>
+                  <!--Container for display based on choosen day-->
+                  <v-container>
+                    <v-row>
+                      <v-col><p :id="salade">Votre Salade</p></v-col>
+                    </v-row>
+                    <v-row>
+                      <v-col
+                        ><v-textarea solo name="input-7-4" label="Nombre désiré"
+                          >Votre plat</v-textarea
+                        ></v-col
+                      >
+                    </v-row>
+                    <p :id="menu">Votre Menu</p>
+                    <v-textarea solo name="input-7-4" label="Nombre désiré"
+                      >Votre plat</v-textarea
                     >
-                      <h1>Votre réservation</h1>
-                      <v-col cols="12" md="6">
-                        <v-select
-                          :items="items"
-                          @change="selectPlate($event)"
-                          label="Choisisez votre jour:"
-                          outlined
-                        ></v-select>
-                      </v-col>
-
-                      <v-card>
-                        <p :id="salade">Votre Salade</p>
-                        <v-textarea solo name="input-7-4" label="Nombre désiré"
-                          >Votre plat</v-textarea
-                        >
-                        <p :id="menu">Votre Menu</p>
-                        <v-textarea solo name="input-7-4" label="Nombre désiré"
-                          >Votre plat</v-textarea
-                        >
-                        <p :id="dessert">Votre Dessert</p>
-                        <v-textarea
-                          solo
-                          name="input-7-4"
-                          label="Nombre désiré"
-                        ></v-textarea>
-                      </v-card>
-
-                      <v-textarea
-                        solo
-                        name="input-7-4"
-                        label="Commentaire"
-                      ></v-textarea>
-                        <v-card>Résumé Commande:</v-card>
-                      <v-btn @click="submit()">Envoyer</v-btn>
-                    </div>
-                  </div>
+                    <p :id="dessert">Votre Dessert</p>
+                    <v-textarea
+                      solo
+                      name="input-7-4"
+                      label="Nombre désiré"
+                    ></v-textarea>
+                    <!--Commentary box-->
+                    <v-textarea
+                      solo
+                      name="input-7-4"
+                      label="Commentaire"
+                    ></v-textarea>
+                    <!--Order summary-->
+                    <v-card class="mx-auto" max-width="100%" max-height="100%"
+                      >Résumé Commande:</v-card
+                    >
+                    <!--Submit order-->
+                    <br />
+                    <v-btn @click="submit()">Envoyer</v-btn>
+                  </v-container>
                 </div>
               </div>
             </div>
-          </main>
+          </div>
         </div>
-      </div>
+      </main>
     </div>
   </div>
 </template>

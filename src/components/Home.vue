@@ -1,7 +1,5 @@
 <template>
   <div>
-    <h1>Home</h1>
-
     <div style="transform-origin: center top 0px">
       <div
         data-app="true"

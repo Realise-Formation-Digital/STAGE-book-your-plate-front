@@ -11,4 +11,4 @@ export function getPlateByWeekday() {
 }
 
 
-// console.log(new Date().toISOString())
+console.log(new Date().toISOString())
