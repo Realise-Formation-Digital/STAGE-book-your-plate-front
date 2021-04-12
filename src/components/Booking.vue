@@ -1,86 +1,106 @@
 <template>
   <div>
     <div class="v-application--wrap">
-      <main class="v-main grey lighten-3" data-booted="true">
-        <div class="v-main__wrap">
-          <div class="container">
-            <div class="row">
-              <div class="col">
-                <div
-                  class="v-sheet theme--light rounded-lg"
-                  style="min-height: 50vh"
-                >
-                  <h1>Votre réservation</h1>
-                  <!--Day selector-->
-                  <v-col cols="12" md="12">
-                    <v-select
-                      :items="items"
-                      @change="selectPlate($event)"
-                      label="Choisisez votre jour:"
-                      outlined
-                    ></v-select>
-                  </v-col>
-                  <!--Container for display based on choosen day-->
-                  <v-container>
-                    
+      <div class="v-main__wrap">
+        <div class="container">
+          <div class="row">
+            <div class="col">
+              <div
+                class="v-sheet theme--light rounded-lg"
+                style="min-height: 50vh"
+              >
+                <h1>Votre réservation</h1>
+                <!--Day selector-->
+                <v-col cols="12" md="12">
+                  <v-select
+                    :items="items"
+                    @change="selectPlate($event)"
+                    label="Choisisez votre jour:"
+                    outlined
+                  ></v-select>
+                </v-col>
+                <!--Container for display based on choosen day-->
+                <v-container>
+                  <v-row solo>
+                    <v-col cols="8" sm="8">
+                      <v-card class="pa-2" outlined tile> Salade </v-card>
+                    </v-col>
+                    <v-col cols="4" sm="4">
+                      <v-text-field
+                        id="numberSalade"
+                        label="Entrer le nombre désiré"
+                        solo
+                      ></v-text-field>
+                    </v-col>
+                  </v-row>
 
-                    
-                      <v-row solo>
-                        <v-col cols="8" sm="8">
-                          <v-card class="pa-2" outlined tile> Salade </v-card>
-                        </v-col>
-                        <v-col cols="4" sm="4">
-                          <v-text-field label="Entrer le nombre désiré" solo></v-text-field>
-                        </v-col>
-                      </v-row>
-                    
+                  <v-row solo>
+                    <v-col cols="8" sm="8">
+                      <v-card class="pa-2" outlined tile> Plat </v-card>
+                    </v-col>
+                    <v-col cols="4" sm="4">
+                      <v-text-field
+                        label="Entrer le nombre désiré"
+                        solo
+                      ></v-text-field>
+                    </v-col>
+                  </v-row>
 
-                    
-                      <v-row solo>
-                        <v-col cols="8" sm="8">
-                          <v-card class="pa-2" outlined tile> Plat </v-card>
-                        </v-col>
-                        <v-col cols="4" sm="4">
-                          <v-text-field label="Entrer le nombre désiré" solo></v-text-field>
-                        </v-col>
-                      </v-row>
-             
+                  <v-row solo>
+                    <v-col cols="8" sm="8">
+                      <v-card class="pa-2" outlined tile> Dessert </v-card>
+                    </v-col>
+                    <v-col cols="4" sm="4">
+                      <v-text-field
+                        label="Entrer le nombre désiré"
+                        solo
+                      ></v-text-field>
+                    </v-col>
+                  </v-row>
 
-             
-                      <v-row solo>
-                        <v-col cols="8" sm="8">
-                          <v-card class="pa-2" outlined tile> Dessert </v-card>
-                        </v-col>
-                        <v-col cols="4" sm="4">
-                          <v-text-field label="Entrer le nombre désiré" solo></v-text-field>
-                        </v-col>
-                      </v-row>
-    
-
-                    <!--Order summary-->
-                    <v-card class="mx-auto" max-width="100%" max-height="100%"
-                      >
-                      <h2>Résumé Commande:</h2>
-                      <p>1x Steak Frite</p>
-                      <p>1x Tiramisu</p>
-                      <h3>Total 14.- CHF</h3>
-                      </v-card>
-                    <br />
-                    <!--Commentary box-->
-                    <v-textarea
-                      solo
-                      name="input-7-4"
-                      label="Commentaire"
-                    ></v-textarea>
-                    <!--Submit order-->
-                    <v-btn @click="submit()">Envoyer</v-btn>
-                  </v-container>
-                </div>
+                  <!--Order summary-->
+                  <v-card class="mx-auto" max-width="100%" max-height="100%">
+                    <h2>Résumé Commande:</h2>
+                    <p>1x Steak Frite</p>
+                    <p>1x Tiramisu</p>
+                    <h3>Total 14.- CHF</h3>
+                  </v-card>
+                  <br />
+                  <!--Commentary box-->
+                  <v-textarea
+                    solo
+                    name="input-7-4"
+                    label="Commentaire"
+                  ></v-textarea>
+                  <!--Submit order-->
+                  <div class="text-center">
+                    <v-bottom-sheet v-model="sheet" persistent>
+                      <template v-slot:activator="{ on, attrs }">
+                        <v-btn color="green" dark v-bind="attrs" v-on="on">
+                          Confirmer votre réservation
+                        </v-btn>
+                      </template>
+                      <v-sheet class="text-center" height="200px">
+                        <v-btn
+                          class="mt-6"
+                          text
+                          color="error"
+                          @click="sheet = !sheet"
+                        >
+                          close
+                        </v-btn>
+                        <div class="py-3">
+                          Votre réservation nous est bien parvenue
+                        </div>
+                      </v-sheet>
+                    </v-bottom-sheet>
+                  </div>
+                </v-container>
               </div>
             </div>
           </div>
         </div>
-      </main>
+      </div>
     </div>
   </div>
 </template>
@@ -91,6 +111,8 @@ export default {
   name: "Booking",
 
   data: () => ({
+    sheet: false,
+
     plate: {
       id: "",
       description: "",

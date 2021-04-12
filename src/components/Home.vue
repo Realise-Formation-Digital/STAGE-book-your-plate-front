@@ -8,50 +8,65 @@
         file="wireframes/constrained"
       >
         <div class="v-application--wrap">
-          <main
-            class="v-main grey lighten-3"
-            data-booted="true"
-          >
-            <div class="v-main__wrap">
-              <div class="container">
-                <div class="row">
-                  <!--Container for display-->
-                  <div class="col">
-                    <div
-                      class="v-sheet theme--light rounded-lg"
-                      style="min-height: 50vh"
-                    >
-                      <h1>Menu de la semaine</h1>
-                      <h2>Lundi</h2>
-                      <p>Salade</p>
-                      <p>Plat</p>
-                      <p>Dessert</p>
-                      <h2>Mardi</h2>
-                      <p>Salade</p>
-                      <p>Plat</p>
-                      <p>Dessert</p>
-                      <h2>Mercredi</h2>
-                      <p>Salade</p>
-                      <p>Plat</p>
-                      <p>Dessert</p>
-                      <h2>Jeudi</h2>
-                      <p>Salade</p>
-                      <p>Plat</p>
-                      <p>Dessert</p>
-                      <h2>Vendredi</h2>
-                      <p>Salade</p>
-                      <p>Plat</p>
-                      <p>Dessert</p>
-                    </div>
-                    <div class="v-list-item__content">
-                      <v-btn class="v-list-item__title">Semaine suivante</v-btn>
-                      <p>(Disponible dès Mercredi)</p>
+          <div class="v-main__wrap">
+            <div class="container">
+              <div class="row">
+                <!--Container for display-->
+                <div class="col">
+                  <div
+                    class="v-sheet theme--light rounded-lg"
+                    style="min-height: 50vh"
+                  >
+                    <h1>Menu de la semaine</h1>
+                    <h2>Lundi</h2>
+                    <p>Salade</p>
+                    <p>Plat</p>
+                    <p>Dessert</p>
+                    <h2>Mardi</h2>
+                    <p>Salade</p>
+                    <p>Plat</p>
+                    <p>Dessert</p>
+                    <h2>Mercredi</h2>
+                    <p>Salade</p>
+                    <p>Plat</p>
+                    <p>Dessert</p>
+                    <h2>Jeudi</h2>
+                    <p>Salade</p>
+                    <p>Plat</p>
+                    <p>Dessert</p>
+                    <h2>Vendredi</h2>
+                    <p>Salade</p>
+                    <p>Plat</p>
+                    <p>Dessert</p>
+                  </div>
+                  <div class="v-list-item__content">
+                    <div class="text-center">
+                      <v-bottom-sheet v-model="sheet" persistent>
+                        <template v-slot:activator="{ on, attrs }">
+                          <v-btn color="green" dark v-bind="attrs" v-on="on">
+                            Semaine suivante
+                          </v-btn>
+                        </template>
+                        <v-sheet class="text-center" height="200px">
+                          <v-btn
+                            class="mt-6"
+                            text
+                            color="error"
+                            @click="sheet = !sheet"
+                          >
+                            close
+                          </v-btn>
+                          <div class="py-3">
+                            Les menu de la semaine suivante sont affichés le mercredi
+                          </div>
+                        </v-sheet>
+                      </v-bottom-sheet>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </main>
+          </div>
         </div>
       </div>
     </div>
@@ -71,6 +86,8 @@ export default {
     img: "photo",
     typePlat: "plat",
     timestamp: "Get time",
+
+    sheet: false,
   }),
 };
 </script>

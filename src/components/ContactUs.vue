@@ -43,7 +43,22 @@
               required
             ></v-text-field>
           </v-col>
-          <v-btn @click="submit()" color="blue lighten-4">Send</v-btn>
+
+          <div class="text-center">
+            <v-bottom-sheet v-model="sheet" persistent>
+              <template v-slot:activator="{ on, attrs }">
+                <v-btn color="green" dark v-bind="attrs" v-on="on">
+                  Envoyer
+                </v-btn>
+              </template>
+              <v-sheet class="text-center" height="200px">
+                <v-btn class="mt-6" text color="error" @click="sheet = !sheet">
+                  close
+                </v-btn>
+                <div class="py-3">Votre message a bien été envoyé</div>
+              </v-sheet>
+            </v-bottom-sheet>
+          </div>
         </v-row>
       </v-container>
     </v-form>
@@ -55,6 +70,8 @@ export default {
   name: "ContactUs",
 
   data: () => ({
+    sheet: false,
+
     valid: false,
     firstname: "",
     lastname: "",
@@ -69,13 +86,18 @@ export default {
     ],
     comment: "",
     commentRules: [(v) => !!v || "Text is required"],
-
-
   }),
 
   methods: {
     async submit() {
-      console.log("This",this.firstname, this.lastname, this.comment, this.email);
+      console.log(
+        "This",
+        this.firstname,
+        this.lastname,
+        this.comment,
+        this.email
+      );
+      alert("Merci de nous avoir contacté");
       /* !!!!Mettre dans un fichier .js séparer avec toutes les actions axios!!!!!
       const axios = require('axios');
       const result = await axios.post('/feddback', {
@@ -92,9 +114,7 @@ export default {
       }
       */
 
-      console.log("Response server")
-
-
+      console.log("Response server");
     },
   },
 };
