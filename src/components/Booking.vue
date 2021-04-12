@@ -18,76 +18,6 @@
             <div class="v-main__wrap">
               <div class="container">
                 <div class="row">
-                  <div class="col col-2">
-                    <div class="v-sheet theme--light rounded-lg">
-                      <div
-                        role="list"
-                        class="v-list v-sheet theme--light transparent"
-                      >
-                        <div
-                          tabindex="0"
-                          role="listitem"
-                          class="v-list-item v-list-item--link theme--light"
-                        >
-                          <!--Days of the week-->
-                          <div class="v-list-item__content">
-                            <div class="v-list-item__title">Lundi</div>
-                          </div>
-                        </div>
-                        <div
-                          tabindex="0"
-                          role="listitem"
-                          class="v-list-item v-list-item--link theme--light"
-                        >
-                          <div class="v-list-item__content">
-                            <div class="v-list-item__title">Mardi</div>
-                          </div>
-                        </div>
-                        <div
-                          tabindex="0"
-                          role="listitem"
-                          class="v-list-item v-list-item--link theme--light"
-                        >
-                          <div class="v-list-item__content">
-                            <div class="v-list-item__title">Mercredi</div>
-                          </div>
-                        </div>
-                        <div
-                          tabindex="0"
-                          role="listitem"
-                          class="v-list-item v-list-item--link theme--light"
-                        >
-                          <div class="v-list-item__content">
-                            <div class="v-list-item__title">Jeudi</div>
-                          </div>
-                        </div>
-                        <div
-                          tabindex="0"
-                          role="listitem"
-                          class="v-list-item v-list-item--link theme--light"
-                        >
-                          <div class="v-list-item__content">
-                            <div class="v-list-item__title">Vendredi</div>
-                          </div>
-                        </div>
-                        <hr
-                          role="separator"
-                          aria-orientation="horizontal"
-                          class="my-2 v-divider theme--light"
-                        />
-                        <div
-                          tabindex="0"
-                          role="listitem"
-                          class="v-list-item v-list-item--link theme--light grey--text text--lighten-4"
-                        >
-                          <div class="v-list-item__content">
-                            <div class="v-list-item__title">Suivant</div>
-                            <p>(Disponible dès Mercredi)</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
                   <!--Container for display-->
                   <div class="col">
                     <div
@@ -95,7 +25,27 @@
                       style="min-height: 70vh"
                     >
                       <h1>Votre résérvation</h1>
-                      
+                      <v-col class="d-flex" cols="12" sm="6">
+                        <v-select
+                          :items="items"
+                          label="Choisisez votre jour:"
+                          outlined
+                        ></v-select>
+                      </v-col>
+                      <p>Votre salade + nb</p>
+                      <p>Votre plat + nb</p>
+                      <p>Votre dessert + nb</p>
+                      <br />
+                      <h2>Commentaire:</h2>
+                      <p>
+                        Lorem ipsum dolor, sit amet consectetur adipisicing
+                        elit. Quibusdam exercitationem a cum deleniti ut neque
+                        officia dicta necessitatibus maiores voluptatem
+                        inventore assumenda quasi, rem quidem qui officiis
+                        expedita eligendi molestiae.
+                      </p>
+
+                      <v-btn @click="submit()">Envoyer</v-btn>
                     </div>
                   </div>
                 </div>
@@ -106,13 +56,52 @@
       </div>
     </div>
   </div>
-  
 </template>
 
 <script>
 export default {
-name: "Booking"
-}
+  name: "Booking",
+
+  data: () => ({
+    id: "Number",
+    description: "String",
+    deliverydate: "Number",
+    price: "Number",
+    mentionspeciale: "String",
+    img: "String",
+    typePlat: "String",
+    timestamp: "Number",
+    //List menu to choose day of the week
+    items: ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi"],
+
+    menu: "Steak Frites",
+    salade: "Caesar",
+    dessert: "Tiramisu",
+  }),
+
+  methods: {
+    async submit() {
+      console.log("This", this.description);
+      /*
+      const axios = require('axios');
+      const result = await axios.post('/feddback', {
+        comment: this.comment,
+        email:this.email,
+        lastName: this.lastname,
+        name: this.name,
+      })
+      
+      if (result.status === 200) {
+
+      }else{
+
+      }
+      */
+
+      console.log("Response server");
+    },
+  },
+};
 </script>
 
 <style scoped>
