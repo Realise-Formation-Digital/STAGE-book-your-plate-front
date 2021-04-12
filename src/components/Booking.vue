@@ -22,38 +22,57 @@
                   </v-col>
                   <!--Container for display based on choosen day-->
                   <v-container>
-                    <v-row>
-                      <v-col><p :id="salade">Votre Salade</p></v-col>
-                    </v-row>
-                    <v-row>
-                      <v-col
-                        ><v-textarea solo name="input-7-4" label="Nombre désiré"
-                          >Votre plat</v-textarea
-                        ></v-col
+                    
+
+                    
+                      <v-row solo>
+                        <v-col cols="8" sm="8">
+                          <v-card class="pa-2" outlined tile> Salade </v-card>
+                        </v-col>
+                        <v-col cols="4" sm="4">
+                          <v-text-field label="Entrer le nombre désiré" solo></v-text-field>
+                        </v-col>
+                      </v-row>
+                    
+
+                    
+                      <v-row solo>
+                        <v-col cols="8" sm="8">
+                          <v-card class="pa-2" outlined tile> Plat </v-card>
+                        </v-col>
+                        <v-col cols="4" sm="4">
+                          <v-text-field label="Entrer le nombre désiré" solo></v-text-field>
+                        </v-col>
+                      </v-row>
+             
+
+             
+                      <v-row solo>
+                        <v-col cols="8" sm="8">
+                          <v-card class="pa-2" outlined tile> Dessert </v-card>
+                        </v-col>
+                        <v-col cols="4" sm="4">
+                          <v-text-field label="Entrer le nombre désiré" solo></v-text-field>
+                        </v-col>
+                      </v-row>
+    
+
+                    <!--Order summary-->
+                    <v-card class="mx-auto" max-width="100%" max-height="100%"
                       >
-                    </v-row>
-                    <p :id="menu">Votre Menu</p>
-                    <v-textarea solo name="input-7-4" label="Nombre désiré"
-                      >Votre plat</v-textarea
-                    >
-                    <p :id="dessert">Votre Dessert</p>
-                    <v-textarea
-                      solo
-                      name="input-7-4"
-                      label="Nombre désiré"
-                    ></v-textarea>
+                      <h2>Résumé Commande:</h2>
+                      <p>1x Steak Frite</p>
+                      <p>1x Tiramisu</p>
+                      <h3>Total 14.- CHF</h3>
+                      </v-card>
+                    <br />
                     <!--Commentary box-->
                     <v-textarea
                       solo
                       name="input-7-4"
                       label="Commentaire"
                     ></v-textarea>
-                    <!--Order summary-->
-                    <v-card class="mx-auto" max-width="100%" max-height="100%"
-                      >Résumé Commande:</v-card
-                    >
                     <!--Submit order-->
-                    <br />
                     <v-btn @click="submit()">Envoyer</v-btn>
                   </v-container>
                 </div>
@@ -99,6 +118,7 @@ export default {
 
     async submit() {
       console.log("This", this.menu);
+      alert("Commande bien reçue");
       /*
       const axios = require('axios');
       const result = await axios.post('/feddback', {
