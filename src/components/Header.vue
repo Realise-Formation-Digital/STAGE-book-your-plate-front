@@ -1,11 +1,23 @@
 <template>
-  <div>
-    <h1>Header</h1>
-    <v-app-bar>
-      <router-link to="/">Home</router-link>
-      <router-link to="/ContactUs">Contact Us</router-link>
+  <!--Added simple routes, Chris-->
+    <v-app-bar
+      absolute>
+      <v-btn
+      depressed
+      color="primary">
+        <router-link to="/">Menu de la Semaine</router-link>
+      </v-btn>
+            <v-btn
+      depressed
+      color="error">
+        <router-link to="/Booking">Réservation</router-link>
+      </v-btn>
+      <v-btn
+      depressed
+      color="error">
+        <router-link to="/ContactUs">Nous Contacter</router-link>
+      </v-btn>
     </v-app-bar>
-  </div>
 </template>
 
 <script>

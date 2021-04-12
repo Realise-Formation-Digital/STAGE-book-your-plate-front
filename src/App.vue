@@ -1,25 +1,6 @@
 <template>
   <div id="app">
-    <!--Added simple routes, Chris-->
-    <v-app-bar
-      absolute>
-      <v-btn
-      depressed
-      color="primary">
-        <router-link to="/">Menu de la Semaine</router-link>
-      </v-btn>
-            <v-btn
-      depressed
-      color="error">
-        <router-link to="/Booking">Réservation</router-link>
-      </v-btn>
-      <v-btn
-      depressed
-      color="error">
-        <router-link to="/ContactUs">Nous Contacter</router-link>
-      </v-btn>
-    </v-app-bar>
-    <!---->
+    <Header />
     <v-app>
       <v-main>
         <v-container>
@@ -27,18 +8,19 @@
         </v-container>
       </v-main>
     </v-app>
-    <v-footer padless>
-      <v-col class="text-center" cols="12">
-        {{ new Date().getFullYear() }} — <strong>Réalise</strong>
-      </v-col>
-    </v-footer>
+    <Footer />
   </div>
 </template>
 
 <script>
+import Footer from "./components/Footer";
+import Header from "./components/Header";
 export default {
   name: "App",
-  components: {},
+  components: {
+    Header,
+    Footer
+  },
 };
 </script>
 
