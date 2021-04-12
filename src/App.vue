@@ -6,17 +6,17 @@
       <v-btn
       depressed
       color="primary">
-        <router-link to="/">Home</router-link>
+        <router-link to="/">Menu de la Semaine</router-link>
       </v-btn>
             <v-btn
       depressed
       color="error">
-        <router-link to="/Booking">Booking</router-link>
+        <router-link to="/Booking">Réservation</router-link>
       </v-btn>
       <v-btn
       depressed
       color="error">
-        <router-link to="/ContactUs">Contact Us</router-link>
+        <router-link to="/ContactUs">Nous Contacter</router-link>
       </v-btn>
     </v-app-bar>
     <!---->
@@ -29,7 +29,7 @@
     </v-app>
     <v-footer padless>
       <v-col class="text-center" cols="12">
-        {{ new Date().getFullYear() }} — <strong>Vuetify</strong>
+        {{ new Date().getFullYear() }} — <strong>Réalise</strong>
       </v-col>
     </v-footer>
   </div>

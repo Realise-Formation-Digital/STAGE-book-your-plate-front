@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Contact Us</h1>
+    <h1>Nous Contacter</h1>
 
     <v-form v-model="valid">
       <v-container>
@@ -70,15 +70,13 @@ export default {
     comment: "",
     commentRules: [(v) => !!v || "Text is required"],
 
-    menu: "Steak Frites",
-    salade: "Caesar",
-    dessert:"Tiramisu"
+
   }),
 
   methods: {
     async submit() {
       console.log("This",this.firstname, this.lastname, this.comment, this.email);
-      /*
+      /* !!!!Mettre dans un fichier .js séparer avec toutes les actions axios!!!!!
       const axios = require('axios');
       const result = await axios.post('/feddback', {
         comment: this.comment,

@@ -13,7 +13,6 @@
           <main
             class="v-main grey lighten-3"
             data-booted="true"
-            style="padding: 64px 0px 0px"
           >
             <div class="v-main__wrap">
               <div class="container">
@@ -22,7 +21,7 @@
                   <div class="col">
                     <div
                       class="v-sheet theme--light rounded-lg"
-                      style="min-height: 70vh"
+                      style="min-height: 50vh"
                     >
                       <h1>Menu de la semaine</h1>
                       <h2>Lundi</h2>

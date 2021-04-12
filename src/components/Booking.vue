@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Résérvation</h1>
+    <h1>Réservation</h1>
 
     <div style="transform-origin: center top 0px">
       <div
@@ -22,28 +22,42 @@
                   <div class="col">
                     <div
                       class="v-sheet theme--light rounded-lg"
-                      style="min-height: 70vh"
+                      style="min-height: 50vh"
                     >
-                      <h1>Votre résérvation</h1>
-                      <v-col class="d-flex" cols="12" sm="6">
+                      <h1>Votre réservation</h1>
+                      <v-col cols="12" md="6">
                         <v-select
                           :items="items"
+                          @change="selectPlate($event)"
                           label="Choisisez votre jour:"
                           outlined
                         ></v-select>
                       </v-col>
-                      <p>Votre salade + nb</p>
-                      <p>Votre plat + nb</p>
-                      <p>Votre dessert + nb</p>
-                      <br />
-                      <h2>Commentaire:</h2>
-                      <p>
-                        Lorem ipsum dolor, sit amet consectetur adipisicing
-                        elit. Quibusdam exercitationem a cum deleniti ut neque
-                        officia dicta necessitatibus maiores voluptatem
-                        inventore assumenda quasi, rem quidem qui officiis
-                        expedita eligendi molestiae.
-                      </p>
+
+                      <v-card>
+                        <p :id="salade">Votre Salade</p>
+                        <v-textarea solo name="input-7-4" label="Nombre désiré"
+                          >Votre plat</v-textarea
+                        >
+                        <p :id="menu">Votre Menu</p>
+                        <v-textarea solo name="input-7-4" label="Nombre désiré"
+                          >Votre plat</v-textarea
+                        >
+                        <p :id="dessert">Votre Dessert</p>
+                        <v-textarea
+                          solo
+                          name="input-7-4"
+                          label="Nombre désiré"
+                        ></v-textarea>
+                      </v-card>
+
+                      <v-col cols="12" md="6">
+                        <v-textarea
+                          solo
+                          name="input-7-4"
+                          label="Commentaire"
+                        ></v-textarea>
+                      </v-col>
 
                       <v-btn @click="submit()">Envoyer</v-btn>
                     </div>
@@ -59,18 +73,22 @@
 </template>
 
 <script>
+import * as services from "../services/services";
 export default {
   name: "Booking",
 
   data: () => ({
-    id: "Number",
-    description: "String",
-    deliverydate: "Number",
-    price: "Number",
-    mentionspeciale: "String",
-    img: "String",
-    typePlat: "String",
-    timestamp: "Number",
+    plate: {
+      id: "",
+      description: "",
+      deliverydate: "",
+      price: "",
+      specialInfo: "",
+      img: "",
+      typePlat: "",
+      timestamp: "",
+    },
+
     //List menu to choose day of the week
     items: ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi"],
 
@@ -80,8 +98,13 @@ export default {
   }),
 
   methods: {
+    async selectPlate(event) {
+      this.plate = services.getPlateByWeekday(event);
+      console.log(this.plate);
+    },
+
     async submit() {
-      console.log("This", this.description);
+      console.log("This", this.menu);
       /*
       const axios = require('axios');
       const result = await axios.post('/feddback', {
