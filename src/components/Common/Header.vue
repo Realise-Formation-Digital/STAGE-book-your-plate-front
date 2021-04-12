@@ -7,23 +7,22 @@
           <img class="logo" src="../../assets/logo.png" alt="logo" />
         </router-link>
       </div>
-
     </div>
     <div class="container2">
       <!-- Navigation -->
-      <div class="Navigation">
+      <ul class="Navigation">
         <router-link to="/">
-          <h2 class="router">About us</h2>
+          <div class="router">About us</div>
         </router-link>
 
         <router-link to="/">
-          <h2 class="router">login</h2>
+          <div class="router">login</div>
         </router-link>
 
         <router-link to="/">
-          <h2 class="router">Feedback</h2>
+          <div class="router">Feedback</div>
         </router-link>
-      </div>
+      </ul>
     </div>
   </div>
 </template>
@@ -40,13 +39,14 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  vertical-align: middle;
-  position: fixed;
+  align-items: center;
+  
+  
   width: 100%;
-  top: 0%;
 }
 
-.container1 {}
+.container1 {
+}
 
 .container2 {
   width: 50%;
@@ -56,7 +56,7 @@ export default {
   width: 50%;
 }
 
-.Navigation{
+.Navigation {
   display: flex;
 
   justify-content: space-evenly;
