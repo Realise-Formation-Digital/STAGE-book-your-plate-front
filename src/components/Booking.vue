@@ -19,83 +19,75 @@
                     outlined
                   ></v-select>
                 </v-col>
-                <!--Container for display based on choosen day-->
-                <v-container>
-                  <v-row solo>
-                    <v-col cols="8" sm="8">
-                      <v-card class="pa-2" outlined tile> Salade </v-card>
-                    </v-col>
-                    <v-col cols="4" sm="4">
-                      <v-text-field
-                        id="numberSalade"
-                        label="Entrer le nombre désiré"
-                        solo
-                      ></v-text-field>
-                    </v-col>
-                  </v-row>
 
-                  <v-row solo>
-                    <v-col cols="8" sm="8">
-                      <v-card class="pa-2" outlined tile> Plat </v-card>
-                    </v-col>
-                    <v-col cols="4" sm="4">
-                      <v-text-field
-                        label="Entrer le nombre désiré"
-                        solo
-                      ></v-text-field>
-                    </v-col>
-                  </v-row>
+                <!--Alternate date chooser-->
 
-                  <v-row solo>
-                    <v-col cols="8" sm="8">
-                      <v-card class="pa-2" outlined tile> Dessert </v-card>
-                    </v-col>
-                    <v-col cols="4" sm="4">
+                <v-col cols="12" lg="6">
+                  <v-menu
+                    ref="menu1"
+                    v-model="menu1"
+                    :close-on-content-click="false"
+                    transition="scale-transition"
+                    offset-y
+                    max-width="290px"
+                    min-width="auto"
+                  >
+                    <template v-slot:activator="{ on, attrs }">
                       <v-text-field
-                        label="Entrer le nombre désiré"
-                        solo
+                        v-model="dateFormatted"
+                        label="Choisisez votre jour:"
+                        persistent-hint
+                        prepend-icon="mdi-calendar"
+                        v-bind="attrs"
+                        @blur="date = parseDate(dateFormatted)"
+                        v-on="on"
                       ></v-text-field>
-                    </v-col>
-                  </v-row>
+                    </template>
+                    <v-date-picker
+                      v-model="date"
+                      no-title
+                      @input="menu1 = false"
+                    ></v-date-picker>
+                  </v-menu>
+                </v-col>
 
-                  <!--Order summary-->
-                  <v-card class="mx-auto" max-width="100%" max-height="100%">
-                    <h2>Résumé Commande:</h2>
-                    <p>1x Steak Frite</p>
-                    <p>1x Tiramisu</p>
-                    <h3>Total 14.- CHF</h3>
-                  </v-card>
-                  <br />
-                  <!--Commentary box-->
-                  <v-textarea
-                    solo
-                    name="input-7-4"
-                    label="Commentaire"
-                  ></v-textarea>
-                  <!--Submit order-->
-                  <div class="text-center">
-                    <v-bottom-sheet v-model="sheet" persistent>
-                      <template v-slot:activator="{ on, attrs }">
-                        <v-btn color="green" dark v-bind="attrs" v-on="on">
-                          Confirmer votre réservation
-                        </v-btn>
-                      </template>
-                      <v-sheet class="text-center" height="200px">
-                        <v-btn
-                          class="mt-6"
-                          text
-                          color="error"
-                          @click="sheet = !sheet"
-                        >
-                          close
-                        </v-btn>
-                        <div class="py-3">
-                          Votre réservation nous est bien parvenue
-                        </div>
-                      </v-sheet>
-                    </v-bottom-sheet>
-                  </div>
-                </v-container>
+                <!--Order summary-->
+                <v-card class="mx-auto" max-width="100%" max-height="100%">
+                  <h2>Résumé Commande:</h2>
+                  <p>1x Steak Frite</p>
+                  <p>1x Tiramisu</p>
+                  <h3>Total 14.- CHF</h3>
+                </v-card>
+                <br />
+                <!--Commentary box-->
+                <v-textarea
+                  solo
+                  name="input-7-4"
+                  label="Commentaire"
+                ></v-textarea>
+                <!--Submit order-->
+                <div class="text-center">
+                  <v-bottom-sheet v-model="sheet" persistent>
+                    <template v-slot:activator="{ on, attrs }">
+                      <v-btn color="green" dark v-bind="attrs" v-on="on">
+                        Confirmer votre réservation
+                      </v-btn>
+                    </template>
+                    <v-sheet class="text-center" height="200px">
+                      <v-btn
+                        class="mt-6"
+                        text
+                        color="error"
+                        @click="sheet = !sheet"
+                      >
+                        close
+                      </v-btn>
+                      <div class="py-3">
+                        Votre réservation nous est bien parvenue
+                      </div>
+                    </v-sheet>
+                  </v-bottom-sheet>
+                </div>
               </div>
             </div>
           </div>
@@ -127,9 +119,15 @@ export default {
     //List menu to choose day of the week
     items: ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi"],
 
-    menu: "Steak Frites",
+    plat: "Steak Frites",
     salade: "Caesar",
     dessert: "Tiramisu",
+
+    //Date settings
+    date: new Date().toISOString().substr(0, 10),
+    menu: false,
+    modal: false,
+    menu2: false,
   }),
 
   methods: {
