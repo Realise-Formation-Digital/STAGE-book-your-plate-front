@@ -21,7 +21,7 @@ export default {
         {
           deliveryDate: 1618322669,
           description:
-          "Salade Japonaise: Salade de choux pe-tsai (choux chinois), nouilles de riz, crevettes marinée au soja et wasabi, oranges, algues wakame, concombre, citron vert, graine de sesame",
+            "Salade Japonaise: Salade de choux pe-tsai (choux chinois), nouilles de riz, crevettes marinée au soja et wasabi, oranges, algues wakame, concombre, citron vert, graine de sesame",
           plateType: "Salad",
           price: 10.5,
         },
@@ -33,10 +33,10 @@ export default {
           price: 3,
         },
 
-                {
+        {
           deliveryDate: 1618390400,
           description:
-            "Escalope de dinde viennoise, Pommes de terre frite, Brocolis vapeur",
+            "Paëla de poissons",
           plateType: "Main",
           price: 13,
         },
@@ -52,14 +52,14 @@ export default {
         {
           deliveryDate: 1618390400,
           description:
-          "Salade Japonaise: Salade de choux pe-tsai (choux chinois), nouilles de riz, crevettes marinée au soja et wasabi, oranges, algues wakame, concombre, citron vert, graine de sesame",
+            "Salade Japonaise: Salade de choux pe-tsai (choux chinois), nouilles de riz, crevettes marinée au soja et wasabi, oranges, algues wakame, concombre, citron vert, graine de sesame",
           plateType: "Salad",
           price: 10.5,
         },
 
         {
           deliveryDate: 1618390400,
-          description: "Salade d'ananas",
+          description: "Pêches au sirop",
           plateType: "Dessert",
           price: 3,
         },

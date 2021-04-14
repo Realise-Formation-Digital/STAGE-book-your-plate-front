@@ -1,5 +1,5 @@
 <template>
-  <v-content>
+  <v-main>
     <v-parallax
       src="https://cdn.vuetifyjs.com/images/parallax/material.jpg"
     ></v-parallax>
@@ -24,24 +24,30 @@
             cols="12"
             sm="6"
             md="6"
-            lg="3"
+            lg="4"
           >
             <v-card class="mx-auto" max-width="400">
-              <v-card-title>{{ menu.day }}</v-card-title>
+              <v-card-title>
+                {{ weekdayFromUnix(menu[index][0].deliveryDate) }}
+              </v-card-title>
 
               <v-card-subtitle class="pb-0 overline mb-4">
-                12 avril
+                {{ dateFromUnix(menu[index][0].deliveryDate) }}
               </v-card-subtitle>
 
               <v-card-text class="text--primary">
                 <h4>Plat principal</h4>
-                <div>{{ menu.meal }}</div>
+                <div v-for="(main, index) in menu[0]" :key="index">
+                  {{ main.description }}
+                </div>
                 <h4>Salades</h4>
-                <div v-for="(salad, index) in menus[index].salads" :key="index">
-                  {{ salad }}
+                <div v-for="(salad, index) in menu[1]" :key="index">
+                  {{ salad.description }}
                 </div>
                 <h4>Dessert</h4>
-                <div>{{ menu.dessert }}</div>
+                <div v-for="(dessert, index) in menu[2]" :key="index">
+                  {{ dessert.description }}
+                </div>
               </v-card-text>
             </v-card>
           </v-col>
@@ -51,121 +57,23 @@
         </div>
       </v-container>
     </section>
-  </v-content>
+  </v-main>
 </template>
 
 <script>
 import fakeDB from "../JS/fakeDB";
-import dayjs from "dayjs";
+import functions from "../JS/functions";
 
 export default {
   name: "Home",
-  mixins: [fakeDB],
+  mixins: [fakeDB, functions],
   data() {
     return {
-      menus: [
-        {
-          day: "Lundi",
-          meal:
-            "Escalope de dinde viennoise, Pommes de terre frite, Brocolis vapeur",
-          salads: [
-            "Salade grecque: icéberg, concombre cube, tomate cube, féta cube, oignons rouge, tomates cerises et olives",
-            "Salade Japonaise: Salade de choux pe-tsai (choux chinois), nouilles de riz, crevettes marinée au soja et wasabi, oranges, algues wakame, concombre, citron vert, graine de sesame",
-          ],
-          dessert: "Salade d'ananas",
-        },
-        {
-          day: "Mardi",
-          meal:
-            "Escalope de dinde viennoise, Pommes de terre frite, Brocolis vapeur",
-
-          salads: [
-            "Salade grecque: icéberg, concombre cube, tomate cube, féta cube, oignons rouge, tomates cerises et olives",
-            "Salade Japonaise: Salade de choux pe-tsai (choux chinois), nouilles de riz, crevettes marinée au soja et wasabi, oranges, algues wakame, concombre, citron vert, graine de sesame",
-          ],
-          dessert: "Salade d'ananas",
-        },
-        {
-          day: "Mercredi",
-          meal:
-            "Escalope de dinde viennoise, Pommes de terre frite, Brocolis vapeur",
-          salads: [
-            "Salade grecque: icéberg, concombre cube, tomate cube, féta cube, oignons rouge, tomates cerises et olives",
-            "Salade Japonaise: Salade de choux pe-tsai (choux chinois), nouilles de riz, crevettes marinée au soja et wasabi, oranges, algues wakame, concombre, citron vert, graine de sesame",
-          ],
-          dessert: "Salade d'ananas",
-        },
-        {
-          day: "Jeudi",
-          meal:
-            "Escalope de dinde viennoise, Pommes de terre frite, Brocolis vapeur",
-          salads: [
-            "Salade grecque: icéberg, concombre cube, tomate cube, féta cube, oignons rouge, tomates cerises et olives",
-            "Salade Japonaise: Salade de choux pe-tsai (choux chinois), nouilles de riz, crevettes marinée au soja et wasabi, oranges, algues wakame, concombre, citron vert, graine de sesame",
-          ],
-          dessert: "Salade d'ananas",
-        },
-        {
-          day: "Vendredi",
-          meal:
-            "Escalope de dinde viennoise, Pommes de terre frite, Brocolis vapeur",
-          salads: [
-            "Salade grecque: icéberg, concombre cube, tomate cube, féta cube, oignons rouge, tomates cerises et olives",
-            "Salade Japonaise: Salade de choux pe-tsai (choux chinois), nouilles de riz, crevettes marinée au soja et wasabi, oranges, algues wakame, concombre, citron vert, graine de sesame",
-          ],
-          dessert: "Salade d'ananas",
-        },
-      ],
+      menus: [],
     };
   },
 
-  methods: {
-    test() {
-      console.log(this.data);
-    },
-
-    groupByDate(data) {
-      let map = new Map(Array.from(data, (obj) => [obj["deliveryDate"], []]));
-      data.forEach((obj) => map.get(obj["deliveryDate"]).push(obj));
-
-      return Array.from(map.values());
-    },
-
-    weekdayFromUnix(timeStamp) {
-      const weekday = new Array(7);
-      weekday[0] = "Dimanche";
-      weekday[1] = "Lundi";
-      weekday[2] = "Mardi";
-      weekday[3] = "Mercredi";
-      weekday[4] = "Jeudi";
-      weekday[5] = "Vendredi";
-      weekday[6] = "Samedi";
-
-      return weekday[dayjs.unix(timeStamp).$d.getDay()];
-    },
-
-    dateFromUnix(timeStamp) {
-      const month = new Array(7);
-      month[0] = "Janvier";
-      month[1] = "Février";
-      month[2] = "Mars";
-      month[3] = "Avril";
-      month[4] = "Mai";
-      month[5] = "Juin";
-      month[6] = "Juillet";
-      month[7] = "Août";
-      month[8] = "Septembre";
-      month[9] = "Octobre";
-      month[10] = "Novembre";
-      month[11] = "Décembre";
-
-      let date = dayjs.unix(timeStamp).$d;
-      let monthString = month[date.getUTCMonth()];
-      var day = date.getUTCDate();
-
-      return day + " " + monthString;
-    },
-  },
+  methods: {},
 
   async mounted() {
     try {
@@ -174,13 +82,7 @@ export default {
         let result = await axios.get(url);  */
 
       let data = this.plates;
-      data = this.groupByDate(data)
-
-let unique = [...new Set(data[0].map(item => item.description))];
-console.log(unique);
-      
-      console.log(this.weekdayFromUnix(1618322669));
-      console.log(this.dateFromUnix(1618322669));
+      this.menus = this.groupData(data);
     } catch (e) {
       console.log(e);
     }
