@@ -74,21 +74,31 @@
 </template>
 
 <script>
+import fakeDB from "../JS/fakeDB";
+import functions from "../JS/functions";
+
 export default {
   name: "Home",
+  mixins: [fakeDB, functions],
 
-  data: () => ({
-    id: 1,
-    description: "Steak Frites",
-    deliverydate: "01.05.2021",
-    price: 11 + "chf",
-    specialinfo: "",
-    img: "photo",
-    typePlat: "plat",
-    timestamp: "Get time",
-
-    sheet: false,
-  }),
+ data() {
+    return {
+      menus: [],
+      sheet: false,
+    };
+  },
+  methods: {},
+  async mounted() {
+    try {
+      /*         const axios = require("axios");
+        let url = "http://localhost:8000/api/";
+        let result = await axios.get(url);  */
+      let data = this.plates;
+      this.menus = this.groupData(data);
+    } catch (e) {
+      console.log(e);
+    }
+  },
 };
 </script>
 
