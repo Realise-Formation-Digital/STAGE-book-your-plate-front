@@ -1,16 +1,10 @@
 <template>
   <v-main>
-    <v-parallax
-      src="../assets/27.JPG"
-    ></v-parallax>
+    <v-img dark src="img/26.JPG"></v-img>
 
     <v-container>
       <h2 class="presentation" align="center" justify="center">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-        velit esse cillum dolore eu fugiat nulla pariatur.
+        Bienvenue à la cafétéria de Réalise
       </h2>
     </v-container>
 
@@ -35,8 +29,12 @@
                 {{ dateFromUnix(menu.deliveryDate) }}
               </v-card-subtitle>
 
-              <v-card-text v-for="(currentMenu, index) in menu.currentMenu" :key="index" class="text--primary">
-                <h4>{{currentMenu.plateType}}</h4>
+              <v-card-text
+                v-for="(currentMenu, index) in menu.currentMenu"
+                :key="index"
+                class="text--primary"
+              >
+                <h4>{{ currentMenu.plateType }}</h4>
                 <div>
                   {{ currentMenu.description }}
                 </div>
