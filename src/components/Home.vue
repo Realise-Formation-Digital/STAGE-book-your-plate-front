@@ -1,6 +1,6 @@
 <template>
   <v-main>
-    <v-img dark src="img/26.JPG"></v-img>
+    <v-img src="img/26.JPG"></v-img>
 
     <v-container>
       <h2 class="presentation" align="center" justify="center">
@@ -58,7 +58,9 @@
           </v-col>
         </v-row>
         <div style="text-align: center; padding: 40px 0px 40px 0px">
-          <v-btn elevation="2">Reserver</v-btn>
+          <v-btn elevation="2">
+            <router-link to="/Booking">Réserver</router-link>
+          </v-btn>
         </div>
       </v-container>
     </section>
