@@ -1,106 +1,119 @@
 <template>
-  <div>
-    <div style="transform-origin: center top 0px">
-      <div
-        data-app="true"
-        class="v-application v-application--is-ltr theme--light"
-        id="inspire"
-        file="wireframes/constrained"
-      >
-        <div class="v-application--wrap">
-          <div class="v-main__wrap">
-            <div class="container">
-              <div class="row">
-                <!--Container for display-->
-                <div class="col">
-                  <div
-                    class="v-sheet theme--light rounded-lg"
-                    style="min-height: 50vh"
-                  >
-                    <h1>Menu de la semaine</h1>
-                    <h2>Lundi</h2>
-                    <p>Salade</p>
-                    <p>Plat</p>
-                    <p>Dessert</p>
-                    <h2>Mardi</h2>
-                    <p>Salade</p>
-                    <p>Plat</p>
-                    <p>Dessert</p>
-                    <h2>Mercredi</h2>
-                    <p>Salade</p>
-                    <p>Plat</p>
-                    <p>Dessert</p>
-                    <h2>Jeudi</h2>
-                    <p>Salade</p>
-                    <p>Plat</p>
-                    <p>Dessert</p>
-                    <h2>Vendredi</h2>
-                    <p>Salade</p>
-                    <p>Plat</p>
-                    <p>Dessert</p>
-                  </div>
-                  <div class="v-list-item__content">
-                    <div class="text-center">
-                      <v-bottom-sheet v-model="sheet" persistent>
-                        <template v-slot:activator="{ on, attrs }">
-                          <v-btn color="green" dark v-bind="attrs" v-on="on">
-                            Semaine suivante
-                          </v-btn>
-                        </template>
-                        <v-sheet class="text-center" height="200px">
-                          <v-btn
-                            class="mt-6"
-                            text
-                            color="error"
-                            @click="sheet = !sheet"
-                          >
-                            close
-                          </v-btn>
-                          <div class="py-3">
-                            Les menu de la semaine suivante sont affichés le mercredi
-                          </div>
-                        </v-sheet>
-                      </v-bottom-sheet>
-                    </div>
-                  </div>
+  <v-main>
+    <v-parallax
+      src="../assets/27.JPG"
+    ></v-parallax>
+
+    <v-container>
+      <h2 class="presentation" align="center" justify="center">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+        velit esse cillum dolore eu fugiat nulla pariatur.
+      </h2>
+    </v-container>
+
+    <section class="blackBlock">
+      <v-container>
+        <h2 class="menuTitle"><em>Menu de la semaine:</em></h2>
+        <v-row align="center" justify="center">
+          <v-col
+            v-for="(menu, index) in menus"
+            :key="index"
+            cols="12"
+            sm="6"
+            md="6"
+            lg="4"
+          >
+            <v-card class="mx-auto" max-width="400">
+              <v-card-title>
+                {{ weekdayFromUnix(menu.deliveryDate) }}
+              </v-card-title>
+
+              <v-card-subtitle class="pb-0 overline mb-4">
+                {{ dateFromUnix(menu.deliveryDate) }}
+              </v-card-subtitle>
+
+              <v-card-text v-for="(currentMenu, index) in menu.currentMenu" :key="index" class="text--primary">
+                <h4>{{currentMenu.plateType}}</h4>
+                <div>
+                  {{ currentMenu.description }}
                 </div>
-              </div>
-            </div>
-          </div>
+              </v-card-text>
+
+              <!--v-card-text class="text--primary">
+                <h4>Plat principal</h4>
+                <div v-for="(main, index) in menu[0]" :key="index">
+                  {{ main.description }}
+                </div>
+                <h4>Salades</h4>
+                <div v-for="(salad, index) in menu[1]" :key="index">
+                  {{ salad.description }}
+                </div>
+                <h4>Dessert</h4>
+                <div v-for="(dessert, index) in menu[2]" :key="index">
+                  {{ dessert.description }}
+                </div>
+              </v-card-text-->
+            </v-card>
+          </v-col>
+        </v-row>
+        <div style="text-align: center; padding: 40px 0px 40px 0px">
+          <v-btn elevation="2">Reserver</v-btn>
         </div>
-      </div>
-    </div>
-  </div>
+      </v-container>
+    </section>
+  </v-main>
 </template>
 
 <script>
 import fakeDB from "../JS/fakeDB.js";
 import functions from "../JS/functions.js";
-
 export default {
-  name: "Home",
   mixins: [fakeDB, functions],
-
- data() {
-    return {
-      menus: [],
-      sheet: false,
-    };
-  },
-  methods: {},
-  async mounted() {
-    try {
-      /*         const axios = require("axios");
-        let url = "http://localhost:8000/api/";
-        let result = await axios.get(url);  */
-      let data = this.plates;
-      this.menus = this.groupData(data);
-    } catch (e) {
-      console.log(e);
-    }
-  },
+  name: "Home",
 };
 </script>
 
 <style scoped>
+h2 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  letter-spacing: 0em;
+  line-height: 1.2em;
+  font-family: adobe-garamond-pro;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 30px;
+  letter-spacing: 0.02em;
+  line-height: 1.5em;
+  text-transform: none;
+}
+p {
+  padding: 13px 0px 7px 0px;
+}
+.presentation {
+  padding: 80px 0 80px 0%;
+}
+.blackBlock {
+  background-color: #1e1e1e;
+  color: #fff;
+}
+.menuTitle {
+  padding: 70px 0px 50px 10%;
+}
+.menuTable {
+  margin: auto;
+  width: 72%;
+  padding-bottom: 100px;
+}
+.days {
+  font-size: 18px !important;
+}
+.text-left {
+  font-size: 18px !important;
+  padding-bottom: 20px !important;
+}
 </style>
