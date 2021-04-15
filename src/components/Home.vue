@@ -1,7 +1,7 @@
 <template>
   <v-main>
     <v-parallax
-      src="../assets/27.JPG"
+      src="/img/27.JPG"
     ></v-parallax>
 
     <v-container>
@@ -28,14 +28,21 @@
           >
             <v-card class="mx-auto" max-width="400">
               <v-card-title>
-                {{ weekdayFromUnix(menu[0][0].deliveryDate) }}
+                {{ weekdayFromUnix(menu.deliveryDate) }}
               </v-card-title>
 
               <v-card-subtitle class="pb-0 overline mb-4">
-                {{ dateFromUnix(menu[0][0].deliveryDate) }}
+                {{ dateFromUnix(menu.deliveryDate) }}
               </v-card-subtitle>
 
-              <v-card-text class="text--primary">
+              <v-card-text v-for="(currentMenu, index) in menu.currentMenu" :key="index" class="text--primary">
+                <h4>{{currentMenu.plateType}}</h4>
+                <div>
+                  {{ currentMenu.description }}
+                </div>
+              </v-card-text>
+
+              <!--v-card-text class="text--primary">
                 <h4>Plat principal</h4>
                 <div v-for="(main, index) in menu[0]" :key="index">
                   {{ main.description }}
@@ -48,12 +55,12 @@
                 <div v-for="(dessert, index) in menu[2]" :key="index">
                   {{ dessert.description }}
                 </div>
-              </v-card-text>
+              </v-card-text-->
             </v-card>
           </v-col>
         </v-row>
         <div style="text-align: center; padding: 40px 0px 40px 0px">
-          <v-btn elevation="2" @click="test()">Reserver</v-btn>
+          <v-btn elevation="2">Reserver</v-btn>
         </div>
       </v-container>
     </section>
@@ -61,7 +68,7 @@
 </template>
 
 <script>
-import fakeDB from "../JS/fakeDB";
+import fakeDB from "../JS/fakeDB.js";
 import functions from "../JS/functions.js";
 
 export default {

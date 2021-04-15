@@ -14,12 +14,63 @@ export default {
         let result = await axios.get(url);  */
 
       let data = this.plates;
-      this.menus = this.groupData(data);
+      //this.menus = this.groupData(data);
+      this.menus = this.filterData(data);
     } catch (e) {
       console.log(e);
     }
   },
   methods: {
+
+    filterData(data) {
+      let uniqueDates = [];
+      let menuList = []
+      let uniqueDatesSorted = []
+
+      // first step --> filter only the unique dates
+      for (let index = 0; index < data.length; index ++) if (!uniqueDates.includes(data[index].deliveryDate)) uniqueDates.push(data[index].deliveryDate)
+
+      uniqueDatesSorted = this.sortByDeliveryDateByUniqueDates(uniqueDates)
+
+      // second step --> loop over found data
+      for (let index = 0; index < uniqueDatesSorted.length; index ++) {
+        //variables declared
+        let menu = []
+        let selectedPlates = []
+
+        // first loop to get all the paltes in a fixed date --> uniqueDates[index]
+        selectedPlates = data.filter((m) => m.deliveryDate === uniqueDatesSorted[index])
+
+        // second loop to build the menu for a fixed date
+        menu = selectedPlates.map((p) => {
+          return {
+            'description': p.description,
+            'plateType': p.plateType,
+            'price': p.price
+          }
+        })
+
+        // sort by plate type --> 1. Main, 2.Salade, 3. Dessert
+        let currentMenu = this.sortByPlateType(menu)
+
+        //build the object to push in the menu list variable (declared on top)
+        const objectToPush = {
+          deliveryDate: uniqueDatesSorted[index],
+          currentMenu: currentMenu
+        }
+
+        //push the result in the menu list variable
+        menuList.push(objectToPush)
+      }
+
+      return menuList
+    },
+
+    //Before working with data, sort it by value of timestamp
+    sortByDeliveryDateByUniqueDates(data) {
+      return data.sort((a, b) => (a > b ? 1 : -1));
+    },
+
     //Before working with data, sort it by value of timestamp
     sortByDeliveryDate(data) {
       return data.sort((a, b) => (a.deliveryDate > b.deliveryDate ? 1 : -1));
@@ -37,7 +88,7 @@ export default {
     },
 
     //When data is grouped by deliveryDate, sort it by plate type in specific order
-    sortByPlateType(data) {
+    /*sortByPlateType(data) {
       const order = ["Main", "Salad", "Dessert"];
       let sorted = [];
 
@@ -57,6 +108,14 @@ export default {
       }
 
       return sorted;
+    },*/
+
+    //When data is grouped by deliveryDate, sort it by plate type in specific order
+    sortByPlateType(data) {
+      const order = ["Main", "Salad", "Dessert"];
+      return data.sort(function(a, b) {
+        return (order.indexOf(a["plateType"]) < order.indexOf(b["plateType"])) ?  -1 : 1
+      })
     },
 
     //Does all of the above functions, and returns sorted and grouped array
