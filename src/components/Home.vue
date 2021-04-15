@@ -62,12 +62,11 @@
 
 <script>
 import fakeDB from "../JS/fakeDB";
-import functions from "../JS/functions";
+import functions from "../JS/functions.js";
 
 export default {
   mixins: [fakeDB, functions],
   name: "Home",
-
 };
 </script>
 
