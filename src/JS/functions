@@ -1,6 +1,25 @@
 import dayjs from "dayjs";
 
 export default {
+    
+  data() {
+    return {
+      menus: [],
+    };
+  },
+
+  async mounted() {
+    try {
+      /*         const axios = require("axios");
+        let url = "http://localhost:8000/api/";
+        let result = await axios.get(url);  */
+
+      let data = this.plates;
+      this.menus = this.groupData(data);
+    } catch (e) {
+      console.log(e);
+    }
+  },
   methods: {
 
     groupByProperty(data, property) {

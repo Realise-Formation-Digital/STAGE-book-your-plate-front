@@ -65,28 +65,9 @@ import fakeDB from "../JS/fakeDB";
 import functions from "../JS/functions";
 
 export default {
-  name: "Home",
   mixins: [fakeDB, functions],
-  data() {
-    return {
-      menus: [],
-    };
-  },
+  name: "Home",
 
-  methods: {},
-
-  async mounted() {
-    try {
-      /*         const axios = require("axios");
-        let url = "http://localhost:8000/api/";
-        let result = await axios.get(url);  */
-
-      let data = this.plates;
-      this.menus = this.groupData(data);
-    } catch (e) {
-      console.log(e);
-    }
-  },
 };
 </script>
 
