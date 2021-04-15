@@ -1,7 +1,7 @@
 <template>
   <v-main>
     <v-parallax
-      src="https://cdn.vuetifyjs.com/images/parallax/material.jpg"
+      src="../assets/27.JPG"
     ></v-parallax>
 
     <v-container>
@@ -28,11 +28,11 @@
           >
             <v-card class="mx-auto" max-width="400">
               <v-card-title>
-                {{ weekdayFromUnix(menu[index][0].deliveryDate) }}
+                {{ weekdayFromUnix(menu[0][0].deliveryDate) }}
               </v-card-title>
 
               <v-card-subtitle class="pb-0 overline mb-4">
-                {{ dateFromUnix(menu[index][0].deliveryDate) }}
+                {{ dateFromUnix(menu[0][0].deliveryDate) }}
               </v-card-subtitle>
 
               <v-card-text class="text--primary">
