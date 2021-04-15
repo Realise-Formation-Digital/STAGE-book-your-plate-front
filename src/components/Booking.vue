@@ -20,36 +20,7 @@
                   ></v-select>
                 </v-col>
 
-                <!--Alternate date chooser-->
 
-                <v-col cols="12" lg="6">
-                  <v-menu
-                    ref="menu1"
-                    v-model="menu1"
-                    :close-on-content-click="false"
-                    transition="scale-transition"
-                    offset-y
-                    max-width="290px"
-                    min-width="auto"
-                  >
-                    <template v-slot:activator="{ on, attrs }">
-                      <v-text-field
-                        v-model="dateFormatted"
-                        label="Choisisez votre jour:"
-                        persistent-hint
-                        prepend-icon="mdi-calendar"
-                        v-bind="attrs"
-                        @blur="date = parseDate(dateFormatted)"
-                        v-on="on"
-                      ></v-text-field>
-                    </template>
-                    <v-date-picker
-                      v-model="date"
-                      no-title
-                      @input="menu1 = false"
-                    ></v-date-picker>
-                  </v-menu>
-                </v-col>
 
                 <!--Order summary-->
                 <v-card class="mx-auto" max-width="100%" max-height="100%">
@@ -123,11 +94,6 @@ export default {
     salade: "Caesar",
     dessert: "Tiramisu",
 
-    //Date settings
-    date: new Date().toISOString().substr(0, 10),
-    menu: false,
-    modal: false,
-    menu2: false,
   }),
 
   methods: {
