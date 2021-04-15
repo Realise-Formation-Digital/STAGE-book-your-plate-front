@@ -14,13 +14,11 @@
                 <v-col cols="12" md="12">
                   <v-select
                     :items="items"
-                    @change="selectPlate($event)"
+                    
                     label="Choisisez votre jour:"
                     outlined
                   ></v-select>
                 </v-col>
-
-
 
                 <!--Order summary-->
                 <v-card class="mx-auto" max-width="100%" max-height="100%">
@@ -69,9 +67,11 @@
 </template>
 
 <script>
-import * as services from "../services/services";
+import fakeDB from "../JS/fakeDB";
+import functions from "../JS/functions";
 export default {
   name: "Booking",
+  mixins: [fakeDB, functions],
 
   data: () => ({
     sheet: false,
@@ -93,15 +93,9 @@ export default {
     plat: "Steak Frites",
     salade: "Caesar",
     dessert: "Tiramisu",
-
   }),
 
   methods: {
-    async selectPlate(event) {
-      this.plate = services.getPlateByWeekday(event);
-      console.log(this.plate);
-    },
-
     async submit() {
       console.log("This", this.menu);
       alert("Commande bien reçue");
