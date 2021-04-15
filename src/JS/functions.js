@@ -44,8 +44,8 @@ export default {
       for (let i = 0; i < data.length; i++) {
         sorted.push(
           data[i].sort(function(a, b) {
-            var A = a["plateType"],
-              B = b["plateType"];
+            let A = a["plateType"];
+            let B = b["plateType"];
 
             if (order.indexOf(A) < order.indexOf(B)) {
               return 1;
@@ -109,7 +109,7 @@ export default {
 
       let date = dayjs.unix(timeStamp).$d;
       let monthString = month[date.getUTCMonth()];
-      var day = date.getUTCDate();
+      let day = date.getUTCDate();
 
       return day + " " + monthString;
     },
