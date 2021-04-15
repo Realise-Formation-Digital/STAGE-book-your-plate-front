@@ -74,8 +74,8 @@
 </template>
 
 <script>
-import fakeDB from "../JS/fakeDB";
-import functions from "../JS/functions";
+import fakeDB from "../JS/fakeDB.js";
+import functions from "../JS/functions.js";
 
 export default {
   name: "Home",
