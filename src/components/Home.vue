@@ -1,6 +1,6 @@
 <template>
   <div id="Home">
-    <!--  
+    <!-- TEST
     <img class="réalisebackground" src="../assets/home-colors-Réalise.png">
 
     <img class="cafet" src="../assets/27.jpg">
