@@ -47,7 +47,7 @@
           <div class="text-center">
             <v-bottom-sheet v-model="sheet" persistent>
               <template v-slot:activator="{ on, attrs }">
-                <v-btn color="green" dark v-bind="attrs" v-on="on">
+                <v-btn color="green" dark v-bind="attrs" v-on="on" @click="submit()">
                   Envoyer
                 </v-btn>
               </template>
@@ -93,13 +93,12 @@ export default {
   methods: {
     async submit() {
       console.log(
-        "This",
+        "Client has entered: ",
         this.firstname,
         this.lastname,
         this.comment,
         this.email
       );
-      alert("Merci de nous avoir contacté");
       /* !!!!Mettre dans un fichier .js séparer avec toutes les actions axios!!!!!
       const axios = require('axios');
       const result = await axios.post('/feddback', {
