@@ -1,9 +1,24 @@
 <template>
   <v-main>
-    <v-parallax
-      src="/img/27.JPG"
-    ></v-parallax>
-
+  <v-parallax
+    dark
+    src="/img/27.jpg"
+    class="test"
+  >
+    <v-row
+      align="center"
+      justify="center"
+    >
+      <v-col
+        class="text-center"
+        cols="12"
+      >
+        <h1 class="display-1 font-weight-thin mb-4">
+          Caféteria de Réalise
+        </h1>
+      </v-col>
+    </v-row>
+  </v-parallax>
     <v-container>
       <h2 class="presentation" align="center" justify="center">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
