@@ -66,7 +66,9 @@
 </template>
 
 <script>
+import fakeDB from "../JS/fakeDB.js";
 export default {
+  mixins: [fakeDB],
   name: "ContactUs",
 
   data: () => ({
