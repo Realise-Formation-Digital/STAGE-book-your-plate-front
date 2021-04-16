@@ -1,69 +1,54 @@
 import dayjs from "dayjs";
 
 export default {
-  data() {
-    return {
-      menus: [],
-    };
-  },
-
-  async mounted() {
-    try {
-      /*         const axios = require("axios");
-        let url = "http://localhost:8000/api/";
-        let result = await axios.get(url);  */
-
-      let data = this.plates;
-      //this.menus = this.groupData(data);
-      this.menus = this.filterData(data);
-    } catch (e) {
-      console.log(e);
-    }
-  },
   methods: {
-
     filterData(data) {
       let uniqueDates = [];
-      let menuList = []
-      let uniqueDatesSorted = []
+      let menuList = [];
+      let uniqueDatesSorted = [];
 
       // first step --> filter only the unique dates
-      for (let index = 0; index < data.length; index ++) if (!uniqueDates.includes(data[index].deliveryDate)) uniqueDates.push(data[index].deliveryDate)
+      for (let index = 0; index < data.length; index++)
+        if (!uniqueDates.includes(data[index].deliveryDate))
+          uniqueDates.push(data[index].deliveryDate);
 
-      uniqueDatesSorted = this.sortByDeliveryDateByUniqueDates(uniqueDates)
+      uniqueDatesSorted = this.sortByDeliveryDateByUniqueDates(uniqueDates);
 
       // second step --> loop over found data
-      for (let index = 0; index < uniqueDatesSorted.length; index ++) {
+      for (let index = 0; index < uniqueDatesSorted.length; index++) {
         //variables declared
-        let menu = []
-        let selectedPlates = []
+        let menu = [];
+        let selectedPlates = [];
 
         // first loop to get all the paltes in a fixed date --> uniqueDates[index]
-        selectedPlates = data.filter((m) => m.deliveryDate === uniqueDatesSorted[index])
-
+        selectedPlates = data.filter(
+          (m) => m.deliveryDate === uniqueDatesSorted[index]
+        );
         // second loop to build the menu for a fixed date
         menu = selectedPlates.map((p) => {
           return {
-            'description': p.description,
-            'plateType': p.plateType,
-            'price': p.price
-          }
-        })
+            plateID: p.id,
+            description: p.description,
+            plateType: p.plateType,
+            deliveryDate : p.deliveryDate,
+            price: p.price,
+          };
+        });
 
         // sort by plate type --> 1. Main, 2.Salade, 3. Dessert
-        let currentMenu = this.sortByPlateType(menu)
+        let currentMenu = this.sortByPlateType(menu);
 
         //build the object to push in the menu list variable (declared on top)
         const objectToPush = {
           deliveryDate: uniqueDatesSorted[index],
-          currentMenu: currentMenu
-        }
+          currentMenu: currentMenu,
+        };
 
         //push the result in the menu list variable
-        menuList.push(objectToPush)
+        menuList.push(objectToPush);
       }
-
-      return menuList
+      console.log(menuList);
+      return menuList;
     },
 
     //Before working with data, sort it by value of timestamp
@@ -91,13 +76,11 @@ export default {
     /*sortByPlateType(data) {
       const order = ["Main", "Salad", "Dessert"];
       let sorted = [];
-
       for (let i = 0; i < data.length; i++) {
         sorted.push(
           data[i].sort(function(a, b) {
             let A = a["plateType"];
             let B = b["plateType"];
-
             if (order.indexOf(A) < order.indexOf(B)) {
               return 1;
             } else {
@@ -106,7 +89,6 @@ export default {
           })
         );
       }
-
       return sorted;
     },*/
 
@@ -114,8 +96,10 @@ export default {
     sortByPlateType(data) {
       const order = ["Main", "Salad", "Dessert"];
       return data.sort(function(a, b) {
-        return (order.indexOf(a["plateType"]) < order.indexOf(b["plateType"])) ?  -1 : 1
-      })
+        return order.indexOf(a["plateType"]) < order.indexOf(b["plateType"])
+          ? -1
+          : 1;
+      });
     },
 
     //Does all of the above functions, and returns sorted and grouped array

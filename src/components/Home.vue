@@ -1,24 +1,14 @@
 <template>
   <v-main>
-  <v-parallax
-    dark
-    src="/img/27.jpg"
-    class="test"
-  >
-    <v-row
-      align="center"
-      justify="center"
-    >
-      <v-col
-        class="text-center"
-        cols="12"
-      >
-        <h1 class="display-1 font-weight-thin mb-4">
-          Caféteria de Réalise
-        </h1>
-      </v-col>
-    </v-row>
-  </v-parallax>
+    <v-parallax dark src="/img/27.jpg" class="test">
+      <v-row align="center" justify="center">
+        <v-col class="text-center" cols="12">
+          <h1 class="display-1 font-weight-thin mb-4">
+            Caféteria de Réalise
+          </h1>
+        </v-col>
+      </v-row>
+    </v-parallax>
     <v-container>
       <h2 class="presentation" align="center" justify="center">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
@@ -50,33 +40,20 @@
                 {{ dateFromUnix(menu.deliveryDate) }}
               </v-card-subtitle>
 
-              <v-card-text v-for="(currentMenu, index) in menu.currentMenu" :key="index" class="text--primary">
-                <h4>{{currentMenu.plateType}}</h4>
+              <v-card-text
+                v-for="(currentMenu, index) in menu.currentMenu"
+                :key="index"
+                class="text--primary"
+              >
+                <h4>{{ currentMenu.plateType }}</h4>
                 <div>
                   {{ currentMenu.description }}
                 </div>
               </v-card-text>
-
-              <!--v-card-text class="text--primary">
-                <h4>Plat principal</h4>
-                <div v-for="(main, index) in menu[0]" :key="index">
-                  {{ main.description }}
-                </div>
-                <h4>Salades</h4>
-                <div v-for="(salad, index) in menu[1]" :key="index">
-                  {{ salad.description }}
-                </div>
-                <h4>Dessert</h4>
-                <div v-for="(dessert, index) in menu[2]" :key="index">
-                  {{ dessert.description }}
-                </div>
-              </v-card-text-->
+              <menuModal v-bind:menu="menu" />
             </v-card>
           </v-col>
         </v-row>
-        <div style="text-align: center; padding: 40px 0px 40px 0px">
-          <v-btn elevation="2">Reserver</v-btn>
-        </div>
       </v-container>
     </section>
   </v-main>
@@ -85,10 +62,32 @@
 <script>
 import fakeDB from "../JS/fakeDB.js";
 import functions from "../JS/functions.js";
+import menuModal from "./menuModal.vue";
 
 export default {
   mixins: [fakeDB, functions],
   name: "Home",
+  components: { menuModal },
+
+  data() {
+    return {
+      menus: [],
+    };
+  },
+
+  async mounted() {
+    try {
+      /*         const axios = require("axios");
+        let url = "http://localhost:8000/api/";
+        let result = await axios.get(url);  */
+
+      let data = this.plates;
+      //this.menus = this.groupData(data);
+      this.menus = this.filterData(data);
+    } catch (e) {
+      console.log(e);
+    }
+  },
 };
 </script>
 
@@ -122,7 +121,7 @@ p {
 }
 
 .menuTitle {
-  padding: 70px 0px 50px 10%;
+  padding: 50px 0px 50px 10%;
 }
 
 .menuTable {
