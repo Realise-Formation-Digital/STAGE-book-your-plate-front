@@ -22,3 +22,8 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+### Organisation
+Miro: https://miro.com/app/board/o9J_lNKbr60=/
+Trello: https://trello.com/b/fkDBKHs2/bookyourplate
+MockPlus: https://app.mockplus.com/app/Y_HdwcdUeX_NV/specs/rp/rPMcNHVzn

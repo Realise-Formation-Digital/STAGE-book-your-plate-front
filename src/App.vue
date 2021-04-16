@@ -1,13 +1,24 @@
 <template>
-  <v-app>
-    <router-view />
-  </v-app>
+  <div id="app">
+    <Header />
+    <v-app>
+      <v-main>
+          <router-view />
+      </v-main>
+    </v-app>
+    <Footer />
+  </div>
 </template>
 
 <script>
+import Footer from "./components/Footer";
+import Header from "./components/Header";
 export default {
   name: "App",
-  components: {},
+  components: {
+    Header,
+    Footer,
+  },
 };
 </script>
 
