@@ -13,8 +13,6 @@
           />
         </router-link>
       
-
-      
         <!-- About us button -->
         <div id="Aboutus">
         <v-btn
@@ -25,11 +23,11 @@
         >
           About us
         </v-btn>
-</div>
+
         <!-- Feedback button -->
         <v-btn
           id="Feedback"
-          to="/"
+          to="/ContactUs"
           color="black"
           class="ma-2 white--text"
           @click="loader = 'loading3'"
@@ -64,6 +62,7 @@
             </v-list-item>
           </v-list>
         </v-menu>
+        </div>
       </v-container>
       <!-- Hamburger -->
       <v-app-bar-nav-icon
@@ -97,7 +96,7 @@
             <v-list-item-icon>
               <v-icon>mdi-account</v-icon>
             </v-list-item-icon>
-            <v-list-item-title>Test</v-list-item-title>
+            <v-list-item-title >Feedback</v-list-item-title>
           </v-list-item>
         </v-list-item-group>
       </v-list>
@@ -156,6 +155,7 @@ components: {
 }
 
   #Aboutus {
-    padding-left: 500px
+    margin-left: auto;
   }
+
 </style>
