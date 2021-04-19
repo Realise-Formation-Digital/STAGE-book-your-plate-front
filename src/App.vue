@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <Header />
     <v-app>
+      <Header />
       <router-view />
     </v-app>
     <Footer />
@@ -9,8 +9,8 @@
 </template>
 
 <script>
-import Footer from "./components/Footer";
-import Header from "./components/Header";
+import Footer from "./components/common/Footer";
+import Header from "./components/common/Header";
 export default {
   name: "App",
   components: {

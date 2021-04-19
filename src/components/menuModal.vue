@@ -116,6 +116,11 @@ export default {
     initBooking() {
       this.chosenQuantity = [];
       this.commentary = null;
+      this.disabled = true;
+      this.commentary = null;
+      this.bookings = [];
+      this.confirm = false;
+      this.totalPrice = 0;
       for (let i = 0; i < this.menu.currentMenu.length; i++) {
         this.chosenQuantity.push(0);
       }
