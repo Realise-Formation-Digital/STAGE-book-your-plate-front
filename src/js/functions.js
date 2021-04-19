@@ -6,7 +6,6 @@ export default {
       let uniqueDates = [];
       let menuList = [];
       let uniqueDatesSorted = [];
-
       // first step --> filter only the unique dates
       for (let index = 0; index < data.length; index++)
         if (!uniqueDates.includes(data[index].deliveryDate))

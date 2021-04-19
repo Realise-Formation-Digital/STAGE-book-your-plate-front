@@ -9,8 +9,17 @@
         </v-col>
       </v-row>
     </v-parallax>
+    <v-alert
+    class="alert"
+      v-if="bookingSent"
+      elevation="5"
+      dismissible
+
+      type="success"
+      >Nous avons bien reçu votre commande!</v-alert
+    >
     <v-container>
-      <h2 class="presentation" align="center" justify="center">
+      <h2 class="presentation" align="center" justify="cente">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
         veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
@@ -18,7 +27,6 @@
         velit esse cillum dolore eu fugiat nulla pariatur.
       </h2>
     </v-container>
-
     <section class="blackBlock">
       <v-container>
         <h2 class="menuTitle"><em>Menu de la semaine:</em></h2>
@@ -50,7 +58,10 @@
                   {{ currentMenu.description }}
                 </div>
               </v-card-text>
-              <menuModal v-bind:menu="menu" />
+              <menuModal
+                v-bind:menu="menu"
+                v-on:clicked-confirm-booking="bookingSent = true"
+              />
             </v-card>
           </v-col>
         </v-row>
@@ -72,9 +83,10 @@ export default {
   data() {
     return {
       menus: [],
+      bookingSent: false,
     };
   },
-
+  methods: {},
   async mounted() {
     try {
       /*         const axios = require("axios");
@@ -118,6 +130,7 @@ p {
 .blackBlock {
   background-color: #1e1e1e;
   color: #fff;
+  padding-bottom: 40px;
 }
 
 .menuTitle {
@@ -138,4 +151,12 @@ p {
   font-size: 18px !important;
   padding-bottom: 20px !important;
 }
+
+.alert{
+  position:fixed;
+  top:0px;
+  width:100%;
+  z-index:10;
+  vertical-align: middle;
+  }
 </style>

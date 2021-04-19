@@ -2,9 +2,7 @@
   <div id="app">
     <Header />
     <v-app>
-      <v-main>
-          <router-view />
-      </v-main>
+      <router-view />
     </v-app>
     <Footer />
   </div>
@@ -22,4 +20,5 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+</style>
