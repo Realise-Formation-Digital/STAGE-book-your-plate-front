@@ -1,10 +1,10 @@
 <template>
   <div id="Home">
-    <!-- TEST
+   <div class="Home">
     <img class="réalisebackground" src="../assets/home-colors-Réalise.png">
 
     <img class="cafet" src="../assets/27.jpg">
-      -->
+   </div>  
   </div>
 </template>
 
@@ -29,13 +29,27 @@ export default {
   width: 144px;
 }
 
+
+.Home{
+  display: flex;
+  
+
+}
+
 .réalisebackground{
-  padding-left: 0px;
-  width: 100%;
-  padding-bottom: 0px;
+    background-image: url(../assets/home-colors-Réalise.png);
+    background-size: auto 50%;
+    position: absolute;
+    display: flex;
+    
 }
 
 .cafet{
-  width: 100%;
+  display: flex;
+  position: unset;
+  height: 462px;
+  width: 90%;
+  margin-left: 200px;
+  
 }
 </style>
