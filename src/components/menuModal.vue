@@ -9,9 +9,11 @@
         </template>
         <template v-slot:default="dialog">
           <v-card>
-            <v-toolbar dark>
+            <v-toolbar color="indigo" dark>
               {{ weekdayFromUnix(menu.deliveryDate) }}
-              {{ dateFromUnix(menu.deliveryDate) }}</v-toolbar
+              {{ dateFromUnix(menu.deliveryDate) }} <v-icon style="margin-left:auto"  @click="dialog.value = false"
+                  >mdi-close
+                </v-icon></v-toolbar
             >
             <v-container>
               <v-card-text
@@ -77,10 +79,6 @@
                 </v-card-actions>
               </v-card>
             </v-dialog>
-
-            <v-card-actions class="justify-end">
-              <v-btn text @click="dialog.value = false">Close</v-btn>
-            </v-card-actions>
           </v-card>
         </template>
       </v-dialog>

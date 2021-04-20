@@ -34,6 +34,16 @@
         >
           <div class="router">Feedback</div>
         </v-btn>
+
+                <v-btn
+          id="Feedback"
+          to="/Users"
+          color="black"
+          class="ma-2 white--text"
+          @click="loader = 'loading3'"
+        >
+          <div class="router">Users</div>
+        </v-btn>
         
         <!-- Account button -->
         <v-menu class="accountlogo" bottom left>

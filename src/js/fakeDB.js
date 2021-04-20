@@ -68,6 +68,28 @@ export default {
           price: 10.5,
         },
       ],
+
+      users: [
+        {
+          id: 1, 
+          typeuser: "Admin",
+          lastname: "White",
+          firstname: "Walter",
+          password: "qwerty",
+          email: "walterwhite@gmail.com",
+          phone: "+41 79 11 111 111"
+        },
+
+        {
+          id: 2, 
+          typeuser: "User",
+          lastname: "Pinkman",
+          firstname: "Jesse",
+          password: "asdfg",
+          email: "jessepinkman@gmail.com",
+          phone: "+41 79 22 222 222"
+        },
+      ]
     };
   },
 };
