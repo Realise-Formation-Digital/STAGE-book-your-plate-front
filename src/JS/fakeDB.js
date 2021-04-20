@@ -14,7 +14,7 @@ export default {
           id: 2,
           deliveryDate: 1618390400,
           description: "Paëla de poissons",
-          plateType: "Main",
+          plateType: "Plat Principal",
           price: 13,
         },
 
@@ -23,7 +23,7 @@ export default {
           deliveryDate: 1618390400,
           description:
             "Salade Japonaise: Salade de choux pe-tsai (choux chinois), nouilles de riz, crevettes marinée au soja et wasabi, oranges, algues wakame, concombre, citron vert, graine de sesame",
-          plateType: "Salad",
+          plateType: "Salade",
           price: 10.5,
         },
         {
@@ -31,7 +31,7 @@ export default {
           deliveryDate: 1618322669,
           description:
             "Salade grecque: icéberg, concombre cube, tomate cube, féta cube, oignons rouge, tomates cerises et olives",
-          plateType: "Salad",
+          plateType: "Salade",
           price: 10.5,
         },
 
@@ -40,7 +40,7 @@ export default {
           deliveryDate: 1618322669,
           description:
             "Salade Japonaise: Salade de choux pe-tsai (choux chinois), nouilles de riz, crevettes marinée au soja et wasabi, oranges, algues wakame, concombre, citron vert, graine de sesame",
-          plateType: "Salad",
+          plateType: "Salade",
           price: 10.5,
         },
         {
@@ -48,7 +48,7 @@ export default {
           deliveryDate: 1618322669,
           description:
             "Escalope de dinde viennoise, Pommes de terre frite, Brocolis vapeur",
-          plateType: "Main",
+          plateType: "Plat Principal",
           price: 13,
         },
         {
@@ -64,7 +64,7 @@ export default {
           deliveryDate: 1618390400,
           description:
             "Salade grecque: icéberg, concombre cube, tomate cube, féta cube, oignons rouge, tomates cerises et olives",
-          plateType: "Salad",
+          plateType: "Salade",
           price: 10.5,
         },
       ],

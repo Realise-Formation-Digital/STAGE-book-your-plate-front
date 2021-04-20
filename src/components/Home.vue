@@ -82,24 +82,12 @@ export default {
 
   data() {
     return {
-      menus: [],
+      
       bookingSent: false,
     };
   },
   methods: {},
-  async mounted() {
-    try {
-      /*         const axios = require("axios");
-        let url = "http://localhost:8000/api/";
-        let result = await axios.get(url);  */
 
-      let data = this.plates;
-      //this.menus = this.groupData(data);
-      this.menus = this.filterData(data);
-    } catch (e) {
-      console.log(e);
-    }
-  },
 };
 </script>
 

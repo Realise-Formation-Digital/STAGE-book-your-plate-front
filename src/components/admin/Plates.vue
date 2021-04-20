@@ -1,16 +1,28 @@
 <template>
   <v-container>
-    <v-data-table :headers="headers" :items="users" class="elevation-1">
+    <v-data-table
+      :headers="headers"
+      :items="plates"
+      :sort-by="['deliveryDate', 'price']"
+      :sort-desc="[false, true]"
+      group-by="deliveryDate"
+      show-group-by
+      multi-sort
+      class="elevation-1"
+    >
+      <template v-slot:item.deliveryDate="{ item }">
+        {{ dateFromUnix(item.deliveryDate) }}
+      </template>
       <template v-slot:top>
         <v-toolbar flat>
-          <v-toolbar-title><h3>Utilisateurs</h3></v-toolbar-title>
+          <v-toolbar-title><h3>Plats</h3></v-toolbar-title>
           <v-divider class="mx-4" inset vertical></v-divider>
           <v-spacer></v-spacer>
           <v-dialog v-model="dialog" max-width="500">
             <template v-slot:activator="{ on, attrs }">
               <v-btn v-bind="attrs" v-on="on" dark tile large color="indigo">
                 <v-icon left>
-                  mdi-account-plus
+                  mdi-silverware
                 </v-icon>
                 Ajouter
               </v-btn>
@@ -28,72 +40,42 @@
                   <v-card-text>
                     <validation-provider
                       v-slot="{ errors }"
-                      name="typeuser"
+                      name="Type de plat"
                       rules="required"
                     >
                       <v-select
-                        v-model="editedItem.typeuser"
-                        :items="['User', 'Admin']"
-                        label="Type d'utilisateur"
+                        v-model="editedItem.plateType"
+                        :items="['Plat Principal', 'Salade', 'Dessert']"
+                        label="Type de plat"
                         :error-messages="errors"
-                        data-vv-name="typeuser"
+                        data-vv-name="plateType"
                         required
                       ></v-select>
                     </validation-provider>
 
                     <validation-provider
                       v-slot="{ errors }"
-                      name="Email"
-                      rules="required|email"
+                      name="Description"
+                      rules="required"
                     >
                       <v-text-field
-                        v-model="editedItem.email"
+                        v-model="editedItem.description"
                         :error-messages="errors"
-                        label="Email"
+                        label="Description"
                       ></v-text-field>
                     </validation-provider>
 
                     <validation-provider
                       v-slot="{ errors }"
-                      name="Nom"
+                      name="Prix"
                       rules="required"
                     >
                       <v-text-field
-                        v-model="editedItem.lastname"
+                        v-model="editedItem.price"
                         :error-messages="errors"
-                        label="Nom"
+                        label="Prix"
                       ></v-text-field>
                     </validation-provider>
-
-                    <validation-provider
-                      v-slot="{ errors }"
-                      name="Prénom"
-                      rules="required"
-                    >
-                      <v-text-field
-                        v-model="editedItem.firstname"
-                        :error-messages="errors"
-                        label="Prénom"
-                      ></v-text-field>
-                    </validation-provider>
-
-                    <validation-provider
-                      v-slot="{ errors }"
-                      name="Mot de passe"
-                      rules="required"
-                    >
-                      <v-text-field
-                        v-model="editedItem.password"
-                        :error-messages="errors"
-                        label="Mot de passe"
-                      ></v-text-field>
-                    </validation-provider>
-
-                    <v-text-field
-                      v-model="editedItem.tel"
-                      label="Tel (optionel)"
-                      hide-details="auto"
-                    ></v-text-field>
                   </v-card-text>
                   <v-card-actions>
                     <v-btn
@@ -113,7 +95,7 @@
           <v-dialog v-model="dialogDelete" max-width="500px">
             <v-toolbar color="indigo" dark
               ><span class="headline"
-                >Voulez-vous supprimer ce utilisateur?</span
+                >Voulez-vous supprimer ce plat?</span
               >
 
               <v-icon @click="closeDelete" class="ml-auto">mdi-close </v-icon>
@@ -159,7 +141,7 @@
 <script>
 import fakeDB from "../../JS/fakeDB.js";
 import functions from "../../JS/functions.js";
-import { required, email } from "vee-validate/dist/rules";
+import { required } from "vee-validate/dist/rules";
 import {
   extend,
   ValidationProvider,
@@ -174,10 +156,6 @@ extend("required", {
   message: "{_field_} ne peut pas être vide",
 });
 
-extend("email", {
-  ...email,
-  message: "Email doit être valide",
-});
 
 export default {
   mixins: [fakeDB, functions],
@@ -190,17 +168,15 @@ export default {
     dialogDelete: false,
     headers: [
       {
-        text: "Type d'utilisateur",
+        text: "Jour",
         align: "start",
         filterable: false,
-        value: "typeuser",
+        value: "deliveryDate",
       },
-      { text: "Nom", value: "lastname" },
-      { text: "Prénom", value: "firstname" },
-      { text: "Mot de passe", value: "password" },
-      { text: "Email", value: "email" },
-      { text: "Tel", value: "phone" },
-      { text: "Actions", value: "actions", sortable: false },
+      { text: "Description", value: "description", sortable: false, groupable: false, },
+      { text: "Type", value: "plateType", sortable: false, groupable: false, },
+      { text: "Prix", value: "price", sortable: false, groupable: false, },
+      { text: "Actions", value: "actions", sortable: false, groupable: false, },
     ],
 
     editedIndex: -1,
@@ -225,8 +201,8 @@ export default {
   computed: {
     formTitle() {
       return this.editedIndex === -1
-        ? "Ajouter un nouvel utilisateur"
-        : "Modifier le profil utilisateur";
+        ? "Ajouter un nouveau plat"
+        : "Modifier le plat";
     },
   },
 
@@ -241,19 +217,19 @@ export default {
 
   methods: {
     editItem(item) {
-      this.editedIndex = this.users.indexOf(item);
+      this.editedIndex = this.plates.indexOf(item);
       this.editedItem = Object.assign({}, item);
       this.dialog = true;
     },
 
     deleteItem(item) {
-      this.editedIndex = this.users.indexOf(item);
+      this.editedIndex = this.plates.indexOf(item);
       this.editedItem = Object.assign({}, item);
       this.dialogDelete = true;
     },
 
     deleteItemConfirm() {
-      this.users.splice(this.editedIndex, 1);
+      this.plates.splice(this.editedIndex, 1);
       this.closeDelete();
     },
 
@@ -275,9 +251,9 @@ export default {
 
     save() {
       if (this.editedIndex > -1) {
-        Object.assign(this.users[this.editedIndex], this.editedItem);
+        Object.assign(this.plates[this.editedIndex], this.editedItem);
       } else {
-        this.users.push(this.editedItem);
+        this.plates.push(this.editedItem);
       }
       this.close();
     },

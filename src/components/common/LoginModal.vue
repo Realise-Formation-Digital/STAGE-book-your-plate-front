@@ -7,7 +7,7 @@
           <v-form @submit.prevent="submit">
             <validation-provider
               v-slot="{ errors }"
-              name="Name"
+              name="Email"
               rules="required|email"
             >
               <v-text-field
@@ -23,13 +23,13 @@
             </validation-provider>
             <validation-provider
               v-slot="{ errors }"
-              name="email"
+              name="Mot de passe"
               rules="required"
             >
               <v-text-field
                 v-model="password"
                 :error-messages="errors"
-                label="Password"
+                label="Mot de passe"
                 :append-icon="showPass ? 'mdi-eye' : 'mdi-eye-off'"
                 @click:append="showPass = !showPass"
                 required
@@ -48,7 +48,7 @@
                 color="white"
                 dark
               >
-                Sign In
+                Ok
               </v-btn>
             </div>
           </v-form>

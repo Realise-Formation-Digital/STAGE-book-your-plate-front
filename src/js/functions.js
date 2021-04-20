@@ -1,6 +1,27 @@
 import dayjs from "dayjs";
 
 export default {
+  data() {
+    return {
+      menus: [],
+      bookingSent: false,
+    };
+  },
+  
+  async mounted() {
+    try {
+      /*         const axios = require("axios");
+        let url = "http://localhost:8000/api/";
+        let result = await axios.get(url);  */
+
+      let data = this.plates;
+      //this.menus = this.groupData(data);
+      this.menus = this.filterData(data);
+    } catch (e) {
+      console.log(e);
+    }
+  },
+
   methods: {
     filterData(data) {
       let uniqueDates = [];
@@ -93,7 +114,7 @@ export default {
 
     //When data is grouped by deliveryDate, sort it by plate type in specific order
     sortByPlateType(data) {
-      const order = ["Main", "Salad", "Dessert"];
+      const order = ["Plat Principal", "Salade", "Dessert"];
       return data.sort(function(a, b) {
         return order.indexOf(a["plateType"]) < order.indexOf(b["plateType"])
           ? -1
