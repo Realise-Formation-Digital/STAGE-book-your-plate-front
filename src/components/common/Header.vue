@@ -2,67 +2,39 @@
   <div id="Header">
     <v-app-bar color="white" class="v-app-bar">
       <v-container class="NavContainer">
-
         <!-- logo Réalise -->
-        <router-link to="/">
+        <router-link to="/">  
           <img
-            to="/"
-            id="logo"
-            src="../../assets/logo-Réalise.svg"
-            alt="logo"
-          />
-        </router-link>
-      
-        <!-- About us button -->
-        <div id="Aboutus">
-        <v-btn
           to="/"
-          color="black"
-          class="ma-2 white--text"
-          @click="loader = 'loading3'"
-        >
-          About us
-        </v-btn>
-
-        <!-- Feedback button -->
-        <v-btn
-          id="Feedback"
-          to="/ContactUs"
-          color="black"
-          class="ma-2 white--text"
-          @click="loader = 'loading3'"
-        >
-          <div class="router">Feedback</div>
-        </v-btn>
-        
-        <!-- Account button -->
-        <v-menu class="accountlogo" bottom left>
-          <template v-slot:activator="{ on, attrs }">
-            <v-btn to="/" icon color="black" v-bind="attrs" v-on="on">
-              <v-icon>mdi-account</v-icon>
+          id="logo"
+          src="../../assets/logo-Réalise.svg"
+          alt="logo" />
+        </router-link>
+          <!-- Feedback button -->
+          <div id="Feedback">
+            <v-btn
+              to="/ContactUs"
+              color="black"
+              class="ma-2 white--text"
+              @click="loader = 'loading3'"
+            >
+              <div class="router">Feedback</div>
             </v-btn>
-          </template>
+          </div>  
+          <v-menu bottom left>
+            <template v-slot:activator="{ on, attrs }">
+              <!-- Account button -->
+              <div class="accountlogo">
+                <v-btn to="/" icon color="black" v-bind="attrs" v-on="on">
+                  <v-icon>mdi-account</v-icon>
+                </v-btn>
+              </div>
+            </template>
 
-          <v-list>
-            <v-list-item>
-              <v-list-item-title>
-                <div @click.stop="dialog = true">Login</div>
-
-                <v-dialog v-model="dialog" max-width="500">
-                  <LoginModal />
-                </v-dialog>
-              </v-list-item-title>
-            </v-list-item>
-            <v-list-item>
-              <v-list-item-title>
-                <router-link to="/">
-                  Sign up
-                </router-link>
-              </v-list-item-title>
-            </v-list-item>
-          </v-list>
-        </v-menu>
-        </div>
+            <v-list>
+              <LoginModal />
+            </v-list>
+          </v-menu>
       </v-container>
       <!-- Hamburger -->
       <v-app-bar-nav-icon
@@ -72,7 +44,7 @@
     </v-app-bar>
 
     <v-navigation-drawer
-    v-if="drawer"
+      v-if="drawer"
       class="v-navigation-drawer"
       v-model="drawer"
       absolute
@@ -96,7 +68,16 @@
             <v-list-item-icon>
               <v-icon>mdi-account</v-icon>
             </v-list-item-icon>
-            <v-list-item-title >Feedback</v-list-item-title>
+            <v-list-item-title>
+               <v-btn
+              to="/ContactUs"
+              color="black"
+              class="ma-2 white--text"
+              @click="loader = 'loading3'"
+            >
+              <div class="router">Feedback</div>
+            </v-btn>
+            </v-list-item-title>
           </v-list-item>
         </v-list-item-group>
       </v-list>
@@ -109,7 +90,7 @@ import LoginModal from "./LoginModal";
 
 export default {
   name: "Header",
-components: {
+  components: {
     LoginModal,
   },
   data: () => ({
@@ -123,6 +104,7 @@ components: {
 <style scoped>
 .NavContainer {
   display: flex;
+  justify-content: space-evenly;
   width: 100%;
 }
 
@@ -130,32 +112,31 @@ components: {
   height: 40px;
 }
 
+#Feedback{
+  margin-left: 10%;
+}
+
+.accountlogo{
+  margin-left: 10%;
+}
+
 .Hamburger .v-app-bar {
   display: flex;
 }
 
-@media (max-width: 780px) {
-  #Header {
-    background-color: #032e5a;
-  }
-
-  #Aboutus {
-    display: none;
-  }
-
+@media (max-width: 475px) {
   #Feedback {
     display: none;
   }
+  .NavContainer{
+    display: flex;
+  }
 }
 
-@media (min-width: 780px) {
+@media (min-width: 475px) {
   .Hamburger {
-    display:none
+    display: none;
   }
+  
 }
-
-  #Aboutus {
-    margin-left: auto;
-  }
-
 </style>

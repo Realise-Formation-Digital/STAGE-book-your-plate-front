@@ -4,13 +4,15 @@
       <v-row align="center" justify="center">
         <v-col class="text-center" cols="12">
           <h1 class="display-1 font-weight-thin mb-4">
-            Caféteria de Réalise
+            <div id="imgDesc">
+              Caféteria de Réalise
+            </div>
           </h1>
         </v-col>
       </v-row>
     </v-parallax>
     <v-alert
-    class="alert"
+      class="alert"
       v-if="bookingSent"
       elevation="5"
       dismissible
@@ -125,6 +127,12 @@ p {
 
 .presentation {
   padding: 80px 0 80px 0%;
+}
+
+#imgDesc{
+  font-size: 60px;
+  color: white;
+  text-shadow: 0 0 10px #000000;
 }
 
 .blackBlock {
