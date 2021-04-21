@@ -1,12 +1,18 @@
 <template>
   <v-container>
-    <v-data-table :headers="headers" :items="users" class="elevation-1">
+    <v-data-table
+      :headers="headers"
+      :items="users"
+      class="elevation-1"
+      hide-default-footer
+      :items-per-page="-1"
+    >
       <template v-slot:top>
         <v-toolbar flat>
           <v-toolbar-title><h3>Utilisateurs</h3></v-toolbar-title>
           <v-divider class="mx-4" inset vertical></v-divider>
           <v-spacer></v-spacer>
-          <v-dialog v-model="dialog" max-width="500">
+          <v-dialog v-model="dialog" max-width="500" persistent>
             <template v-slot:activator="{ on, attrs }">
               <v-btn v-bind="attrs" v-on="on" dark tile large color="indigo">
                 <v-icon left>
