@@ -228,12 +228,12 @@
         </v-toolbar>
       </template>
       <template v-slot:item.actions="{ item }">
-        <v-btn color="primary" fab small @click="editItem(item)" class="mx-1">
+        <v-btn color="primary" outlined fab x-small @click="editItem(item)" class="mx-1 elevation-0">
           <v-icon small>
             mdi-pencil
           </v-icon>
         </v-btn>
-        <v-btn color="error" fab small @click="deleteItem(item)" class="mx-1">
+        <v-btn color="error" outlined fab x-small @click="deleteItem(item)" class="mx-1 elevation-0">
           <v-icon small>
             mdi-delete
           </v-icon>
