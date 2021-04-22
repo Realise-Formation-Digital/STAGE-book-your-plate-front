@@ -13,10 +13,10 @@
         </router-link>
 
         <!-- buttons-------------------------------------------------------------------------------->
-          <div class="container">
+          <div class="container Feedback">
             <router-link to="/ContactUs">
               <button 
-              class="button type1 Feedback">
+              class="button type1">
                 Feedback
               </button>
             </router-link>
@@ -139,7 +139,7 @@ export default {
   display: flex;
 }
 
-@media (max-width: 475px) {
+@media (max-width: 547px) {
   .Feedback {
     display: none;
   }
@@ -158,14 +158,14 @@ export default {
   }
 }
 
-@media (min-width: 475px) {
+@media (min-width: 547px) {
   .Hamburger {
     display: none;
   }
 }
 
 .Feedback{
-  
+  text-align: center
 }
 
 /* Buttons ----------------------------------------------------*/
@@ -195,7 +195,7 @@ export default {
     position: absolute;
     width: 30%;
     height: 40%;
-    border: 5px solid;
+    border: 2px solid;
     transition: all 0.4s ease;
     border-radius: 2px;
   }
