@@ -3,38 +3,47 @@
     <v-app-bar color="white" class="v-app-bar">
       <v-container class="NavContainer">
         <!-- logo Réalise -->
-        <router-link to="/">  
+        <router-link to="/">
           <img
-          to="/"
-          id="logo"
-          src="../../assets/logo-Réalise.svg"
-          alt="logo" />
+            to="/"
+            id="logo"
+            src="../../assets/logo-Réalise.svg"
+            alt="logo"
+          />
         </router-link>
-          <!-- Feedback button -->
-          <div id="Feedback">
-            <v-btn
-              to="/ContactUs"
-              color="black"
-              class="ma-2 white--text"
-              @click="loader = 'loading3'"
-            >
-              <div class="router">Feedback</div>
-            </v-btn>
-          </div>  
-          <v-menu bottom left>
-            <template v-slot:activator="{ on, attrs }">
-              <!-- Account button -->
-              <div class="accountlogo">
-                <v-btn to="/" icon color="black" v-bind="attrs" v-on="on">
-                  <v-icon>mdi-account</v-icon>
-                </v-btn>
-              </div>
-            </template>
 
-            <v-list>
-              <LoginModal />
-            </v-list>
-          </v-menu>
+        <!-- buttons-------------------------------------------------------------------------------->
+          <div class="container">
+            <router-link to="/ContactUs">
+              <button 
+              class="button type1 Feedback">
+                Feedback
+              </button>
+            </router-link>
+
+            <router-link to="/Booking">
+              <button 
+              class="button type1 test">
+                Test
+              </button>
+            </router-link>
+
+          </div>
+        
+        <v-menu bottom left>
+          <template v-slot:activator="{ on, attrs }">
+            <!-- Account button -->
+            <div class="accountlogo">
+              <v-btn to="/" icon color="black" v-bind="attrs" v-on="on">
+                <v-icon>mdi-account</v-icon>
+              </v-btn>
+            </div>
+          </template>
+
+          <v-list>
+            <LoginModal />
+          </v-list>
+        </v-menu>
       </v-container>
       <!-- Hamburger -->
       <v-app-bar-nav-icon
@@ -69,14 +78,14 @@
               <v-icon>mdi-account</v-icon>
             </v-list-item-icon>
             <v-list-item-title>
-               <v-btn
-              to="/ContactUs"
-              color="black"
-              class="ma-2 white--text"
-              @click="loader = 'loading3'"
-            >
-              <div class="router">Feedback</div>
-            </v-btn>
+              <v-btn
+                to="/ContactUs"
+                color="black"
+                class="ma-2 white--text"
+                @click="loader = 'loading3'"
+              >
+                <div class="router">Feedback</div>
+              </v-btn>
             </v-list-item-title>
           </v-list-item>
         </v-list-item-group>
@@ -102,6 +111,11 @@ export default {
 </script>
 
 <style scoped>
+.v-app-bar{
+  padding-top: 10px;
+  padding-bottom: 75px
+}
+
 .NavContainer {
   display: flex;
   justify-content: space-evenly;
@@ -109,15 +123,16 @@ export default {
 }
 
 #logo {
+  margin-top: 38px;
   height: 40px;
+  align-items: center;
+  display: flex;
+  
 }
 
-#Feedback{
-  margin-left: 10%;
-}
-
-.accountlogo{
-  margin-left: 10%;
+.accountlogo {  
+  align-items: center;
+  display: flex;
 }
 
 .Hamburger .v-app-bar {
@@ -125,11 +140,21 @@ export default {
 }
 
 @media (max-width: 475px) {
-  #Feedback {
+  .Feedback {
     display: none;
   }
-  .NavContainer{
+
+  .test{
+    display: none;
+  }
+
+  .NavContainer {
     display: flex;
+  }
+
+  #logo{
+    margin-top: 4px;
+    height: 40px;
   }
 }
 
@@ -137,6 +162,63 @@ export default {
   .Hamburger {
     display: none;
   }
+}
+
+.Feedback{
   
 }
+
+/* Buttons ----------------------------------------------------*/
+
+  @import url("https://fonts.googleapis.com/css?family=Raleway");
+  * {
+    box-sizing: border-box;
+  }
+
+  .button {
+    position: relative;
+    padding: 1em 1.5em;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    outline: none;
+    font-size: 18px;
+    margin: 1em 0.8em;
+  }
+  .button.type1 {
+    color: #000000;
+  }
+  .button.type1.type1::after,
+  .button.type1.type1::before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 30%;
+    height: 40%;
+    border: 5px solid;
+    transition: all 0.4s ease;
+    border-radius: 2px;
+  }
+/* border colors */
+  .button.type1.type1::after {
+    bottom: 0;
+    right: 0;
+    border-top-color: transparent;
+    border-left-color: transparent;
+    border-bottom-color: #735656;
+    border-right-color: #566473;
+  }
+  .button.type1.type1::before {
+    top: 0;
+    left: 0;
+    border-bottom-color: transparent;
+    border-right-color: transparent;
+    border-top-color: #566473;
+    border-left-color: #566473;
+  }
+  .button.type1.type1:hover:after,
+  .button.type1.type1:hover:before {
+    width: 100%;
+    height: 100%;
+  }
 </style>
