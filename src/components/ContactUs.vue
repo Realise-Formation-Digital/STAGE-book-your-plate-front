@@ -10,7 +10,7 @@
               v-model="firstname"
               :rules="nameRules"
               :counter="20"
-              label="First name"
+              label="Prénom"
               required
             ></v-text-field>
           </v-col>
@@ -20,7 +20,7 @@
               v-model="lastname"
               :rules="nameRules"
               :counter="20"
-              label="Last name"
+              label="Nom de famille"
               required
             ></v-text-field>
           </v-col>
@@ -39,7 +39,7 @@
               v-model="comment"
               :rules="commentRules"
               :counter="300"
-              label="Comment"
+              label="Commentaire"
               required
             ></v-text-field>
           </v-col>
@@ -76,16 +76,16 @@ export default {
     firstname: "",
     lastname: "",
     nameRules: [
-      (v) => !!v || "Name is required",
-      (v) => v.length <= 20 || "Name must be less than 10 characters",
+      (v) => !!v || "Merci d'entrer votre nom",
+      (v) => v.length <= 20 || "Le nom doit comporter moins de 20 charactères",
     ],
     email: "",
     emailRules: [
-      (v) => !!v || "E-mail is required",
-      (v) => /.+@.+/.test(v) || "E-mail must be valid",
+      (v) => !!v || "Merci d'entrer votre E-mail",
+      (v) => /.+@.+/.test(v) || "E-mail invalid",
     ],
     comment: "",
-    commentRules: [(v) => !!v || "Text is required"],
+    commentRules: [(v) => !!v || "Merci d'entrer votre text"],
   }),
 
   methods: {

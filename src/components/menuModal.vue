@@ -3,15 +3,18 @@
     <v-col cols="auto">
       <v-dialog fullscreen>
         <template v-slot:activator="{ on, attrs }">
-          <v-btn @click="initBooking()" v-bind="attrs" v-on="on"
+          <v-btn @click="initBooking()" dark v-bind="attrs" v-on="on"
             >Reserver</v-btn
           >
         </template>
         <template v-slot:default="dialog">
           <v-card>
-            <v-toolbar dark>
+            <v-toolbar color="indigo" dark>
               {{ weekdayFromUnix(menu.deliveryDate) }}
-              {{ dateFromUnix(menu.deliveryDate) }}</v-toolbar
+              {{ dateFromUnix(menu.deliveryDate) }}
+              <v-icon style="margin-left:auto" @click="dialog.value = false"
+                >mdi-close
+              </v-icon></v-toolbar
             >
             <v-container>
               <v-card-text
@@ -52,7 +55,14 @@
             <v-dialog v-model="confirm" persistent max-width="350">
               <template v-slot:activator="{ on, attrs }">
                 <div style="text-align: center; padding: 15px 0px 15px 0px">
-                  <v-btn :disabled="disabled" v-bind="attrs" v-on="on" elevation="2">Reserver</v-btn>
+                  <v-btn
+                    color="success"
+                    :disabled="disabled"
+                    v-bind="attrs"
+                    v-on="on"
+                    elevation="2"
+                    >Reserver</v-btn
+                  >
                 </div>
               </template>
               <v-card>
@@ -60,7 +70,8 @@
                   Confirmez votre commande
                 </v-card-title>
                 <v-card-text
-                  >Je confirme ma présence le {{ dateFromUnix(menu.deliveryDate) }}.</v-card-text
+                  >Je confirme ma présence le
+                  {{ dateFromUnix(menu.deliveryDate) }}.</v-card-text
                 >
                 <v-card-actions>
                   <v-spacer></v-spacer>
@@ -68,7 +79,7 @@
                     Annuler
                   </v-btn>
                   <v-btn
-                    @click="confirmBooking(), dialog.value = false"
+                    @click="confirmBooking(), (dialog.value = false)"
                     color="green darken-1"
                     text
                   >
@@ -77,10 +88,6 @@
                 </v-card-actions>
               </v-card>
             </v-dialog>
-
-            <v-card-actions class="justify-end">
-              <v-btn text @click="dialog.value = false">Close</v-btn>
-            </v-card-actions>
           </v-card>
         </template>
       </v-dialog>
@@ -89,6 +96,7 @@
 </template>
 
 <script>
+import axios from "axios";
 import fakeDB from "../JS/fakeDB.js";
 import functions from "../JS/functions.js";
 
@@ -134,7 +142,7 @@ export default {
             this.menu.currentMenu[i].price * this.chosenQuantity[i];
         }
       }
-      this.totalPrice > 0 ? this.disabled = false : this.disabled = true
+      this.totalPrice > 0 ? (this.disabled = false) : (this.disabled = true);
     },
 
     confirmBooking() {
@@ -151,10 +159,16 @@ export default {
             timeStamp: (Date.now() / 1000) | 0,
           };
           this.bookings.push(booking);
+          console.log(this.bookings)
         }
       }
-      console.log(this.bookings)
-      this.$emit('clicked-confirm-booking')
+      this.bookings.forEach((i) =>
+        axios
+          .post("http://127.0.0.1:8000/api/orders", i)
+          .then((response) => console.log(response))
+      );
+      console.log(this.bookings);
+      this.$emit("clicked-confirm-booking");
     },
   },
   mounted() {},

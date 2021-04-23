@@ -1,6 +1,10 @@
 import dayjs from "dayjs";
 
 export default {
+  data() {
+    return {};
+  },
+
   methods: {
     filterData(data) {
       let uniqueDates = [];
@@ -29,7 +33,7 @@ export default {
             plateID: p.id,
             description: p.description,
             plateType: p.plateType,
-            deliveryDate : p.deliveryDate,
+            deliveryDate: p.deliveryDate,
             price: p.price,
           };
         });
@@ -93,7 +97,7 @@ export default {
 
     //When data is grouped by deliveryDate, sort it by plate type in specific order
     sortByPlateType(data) {
-      const order = ["Main", "Salad", "Dessert"];
+      const order = ["Plat Principal", "Salade", "Dessert"];
       return data.sort(function(a, b) {
         return order.indexOf(a["plateType"]) < order.indexOf(b["plateType"])
           ? -1

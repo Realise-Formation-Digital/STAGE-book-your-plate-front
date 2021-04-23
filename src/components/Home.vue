@@ -16,7 +16,6 @@
       v-if="bookingSent"
       elevation="5"
       dismissible
-
       type="success"
       >Nous avons bien reçu votre commande!</v-alert
     >
@@ -91,13 +90,12 @@ export default {
   methods: {},
   async mounted() {
     try {
-      /*         const axios = require("axios");
-        let url = "http://localhost:8000/api/";
-        let result = await axios.get(url);  */
+      //Connect to API
+      const axios = require("axios");
+      //Wait the response and pass the url
+      const result = await axios.get("http://localhost:8000/api/plates");
 
-      let data = this.plates;
-      //this.menus = this.groupData(data);
-      this.menus = this.filterData(data);
+      this.menus = this.filterData(result.data);
     } catch (e) {
       console.log(e);
     }
@@ -160,11 +158,11 @@ p {
   padding-bottom: 20px !important;
 }
 
-.alert{
-  position:fixed;
-  top:0px;
-  width:100%;
-  z-index:10;
+.alert {
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  z-index: 10;
   vertical-align: middle;
-  }
+}
 </style>
