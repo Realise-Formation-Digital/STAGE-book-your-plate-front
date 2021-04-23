@@ -3,7 +3,7 @@
     <v-col cols="auto">
       <v-dialog fullscreen>
         <template v-slot:activator="{ on, attrs }">
-          <v-btn @click="initBooking()" v-bind="attrs" v-on="on"
+          <v-btn @click="initBooking()" dark v-bind="attrs" v-on="on"
             >Reserver</v-btn
           >
         </template>
@@ -54,7 +54,7 @@
             <v-dialog v-model="confirm" persistent max-width="350">
               <template v-slot:activator="{ on, attrs }">
                 <div style="text-align: center; padding: 15px 0px 15px 0px">
-                  <v-btn :disabled="disabled" v-bind="attrs" v-on="on" elevation="2">Reserver</v-btn>
+                  <v-btn color="success" :disabled="disabled" v-bind="attrs" v-on="on" elevation="2">Reserver</v-btn>
                 </div>
               </template>
               <v-card>

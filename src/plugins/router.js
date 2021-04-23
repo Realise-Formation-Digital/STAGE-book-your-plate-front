@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from "@/components/Home"
-import Booking from "@/components/Booking"
 import ContactUs from "@/components/ContactUs"
 import Users from "@/components/admin/Users"
 import Plates from "@/components/admin/Plates"
+import Bookings from "@/components/admin/Bookings"
 Vue.use(VueRouter)
 
 // 2. Define some routes
@@ -14,10 +14,10 @@ Vue.use(VueRouter)
 // We'll talk about nested routes later.
 const routes = [
   { path: '/', component: Home },
-  { path: '/Booking', component: Booking },
   { path: '/ContactUs', component: ContactUs },
   { path: '/Users', component: Users },
   { path: '/Plates', component: Plates },
+  { path: '/Bookings', component: Bookings }
 ]
 
 

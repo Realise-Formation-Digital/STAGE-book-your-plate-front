@@ -71,25 +71,46 @@ export default {
 
       users: [
         {
-          id: 1, 
+          id: 1,
           typeuser: "Admin",
           lastname: "White",
           firstname: "Walter",
           password: "qwerty",
           email: "walterwhite@gmail.com",
-          phone: "+41 79 11 111 111"
+          phone: "+41 79 11 111 111",
         },
 
         {
-          id: 2, 
+          id: 2,
           typeuser: "User",
           lastname: "Pinkman",
           firstname: "Jesse",
           password: "asdfg",
           email: "jessepinkman@gmail.com",
-          phone: "+41 79 22 222 222"
+          phone: "+41 79 22 222 222",
         },
-      ]
+      ],
+
+      bookings: [
+        {
+          id: 1,
+          userID: 1,
+          deliveryDate: 1618390400,
+          plateID: 1,
+          quantity: 1,
+          commentary: null,
+          timestamp: 1618322669,
+        },
+        {
+          id: 2,
+          userID: 2,
+          deliveryDate: 1618320400,
+          plateID: 2,
+          quantity: 3,
+          commentary: "Pas de sucre",
+          timestamp: 1618322669,
+        },
+      ],
     };
   },
 };

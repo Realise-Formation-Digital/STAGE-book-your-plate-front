@@ -271,7 +271,6 @@ export default {
   data: () => ({
     transformedDate: null,
     plateTypes: ["Plat Principal", "Salade", "Dessert"],
-  defaultPrice:11,
     menu: false,
     dialog: false,
     dialogDelete: false,
