@@ -10,11 +10,10 @@
       </v-row>
     </v-parallax>
     <v-alert
-    class="alert"
+      class="alert"
       v-if="bookingSent"
       elevation="5"
       dismissible
-
       type="success"
       >Nous avons bien reçu votre commande!</v-alert
     >
@@ -82,12 +81,23 @@ export default {
 
   data() {
     return {
-      
+      menus: [],
       bookingSent: false,
     };
   },
   methods: {},
+  async mounted() {
+    try {
+      //Connect to API
+      const axios = require("axios");
+      //Wait the response and pass the url
+      const result = await axios.get("http://localhost:8000/api/plates");
 
+      this.menus = this.filterData(result.data);
+    } catch (e) {
+      console.log(e);
+    }
+  },
 };
 </script>
 
@@ -140,11 +150,11 @@ p {
   padding-bottom: 20px !important;
 }
 
-.alert{
-  position:fixed;
-  top:0px;
-  width:100%;
-  z-index:10;
+.alert {
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  z-index: 10;
   vertical-align: middle;
-  }
+}
 </style>

@@ -2,24 +2,7 @@ import dayjs from "dayjs";
 
 export default {
   data() {
-    return {
-      menus: [],
-      bookingSent: false,
-    };
-  },
-  
-  async mounted() {
-    try {
-      /*         const axios = require("axios");
-        let url = "http://localhost:8000/api/";
-        let result = await axios.get(url);  */
-
-      let data = this.plates;
-      //this.menus = this.groupData(data);
-      this.menus = this.filterData(data);
-    } catch (e) {
-      console.log(e);
-    }
+    return {};
   },
 
   methods: {
@@ -50,7 +33,7 @@ export default {
             plateID: p.id,
             description: p.description,
             plateType: p.plateType,
-            deliveryDate : p.deliveryDate,
+            deliveryDate: p.deliveryDate,
             price: p.price,
           };
         });

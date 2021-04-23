@@ -96,7 +96,7 @@
                     </validation-provider>
 
                     <v-text-field
-                      v-model="editedItem.tel"
+                      v-model="editedItem.phone"
                       label="Tel (optionel)"
                       hide-details="auto"
                     ></v-text-field>
@@ -163,6 +163,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 import fakeDB from "../../JS/fakeDB.js";
 import functions from "../../JS/functions.js";
 import { required, email } from "vee-validate/dist/rules";
@@ -216,7 +217,7 @@ export default {
       password: "",
       firstname: "",
       lastname: "",
-      tel: null,
+      phone: null,
     },
     defaultItem: {
       email: "",
@@ -224,7 +225,7 @@ export default {
       password: "",
       firstname: "",
       lastname: "",
-      tel: null,
+      phone: null,
     },
   }),
 
@@ -283,7 +284,8 @@ export default {
       if (this.editedIndex > -1) {
         Object.assign(this.users[this.editedIndex], this.editedItem);
       } else {
-        this.users.push(this.editedItem);
+          axios.post("http://127.0.0.1:8000/api/users", this.editedItem)
+    .then(response => console.log(response));
       }
       this.close();
     },

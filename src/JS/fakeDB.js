@@ -89,6 +89,16 @@ export default {
           email: "jessepinkman@gmail.com",
           phone: "+41 79 22 222 222",
         },
+
+        {
+          id: 69,
+          typeuser: "User",
+          lastname: "Sandler",
+          firstname: "Adam",
+          password: "asdfg",
+          email: "jessepinkman@gmail.com",
+          phone: "+41 79 22 222 222",
+        },
       ],
 
       bookings: [

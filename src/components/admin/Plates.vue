@@ -2,7 +2,7 @@
   <v-container>
     <v-data-table
       :headers="headers"
-      :items="plates"
+      :items="table"
       :sort-by="['deliveryDate', 'price']"
       :sort-desc="[false, true]"
       group-by="deliveryDate"
@@ -71,7 +71,6 @@
                       rules="required"
                     >
                       <v-text-field
-
                         type="number"
                         v-model="editedItem.price"
                         :error-messages="errors"
@@ -228,12 +227,26 @@
         </v-toolbar>
       </template>
       <template v-slot:item.actions="{ item }">
-        <v-btn color="primary" outlined fab x-small @click="editItem(item)" class="mx-1 elevation-0">
+        <v-btn
+          color="primary"
+          outlined
+          fab
+          x-small
+          @click="editItem(item)"
+          class="mx-1 elevation-0"
+        >
           <v-icon small>
             mdi-pencil
           </v-icon>
         </v-btn>
-        <v-btn color="error" outlined fab x-small @click="deleteItem(item)" class="mx-1 elevation-0">
+        <v-btn
+          color="error"
+          outlined
+          fab
+          x-small
+          @click="deleteItem(item)"
+          class="mx-1 elevation-0"
+        >
           <v-icon small>
             mdi-delete
           </v-icon>
@@ -244,6 +257,7 @@
 </template>
 
 <script>
+import axios from "axios";
 import dayjs from "dayjs";
 import fakeDB from "../../JS/fakeDB.js";
 import functions from "../../JS/functions.js";
@@ -269,6 +283,7 @@ export default {
     ValidationObserver,
   },
   data: () => ({
+    table: [],
     transformedDate: null,
     plateTypes: ["Plat Principal", "Salade", "Dessert"],
     menu: false,
@@ -296,6 +311,19 @@ export default {
     editedItem: {},
     defaultItem: {},
   }),
+
+  async mounted() {
+    try {
+      //Connect to API
+      const axios = require("axios");
+      //Wait the response and pass the url
+      const result = await axios.get("http://localhost:8000/api/plates");
+
+      this.table = result.data;
+    } catch (e) {
+      console.log(e);
+    }
+  },
 
   computed: {
     formTitle() {
@@ -360,8 +388,9 @@ export default {
         Object.assign(this.plates[this.editedIndex], this.editedItem);
       } else {
         for (let i = 0; i < this.editedItem.deliveryDate.length; i++) {
-          this.plates.push(this.objectToPush(i));
-          console.log(this.objectToPush(i));
+          axios
+            .post("http://127.0.0.1:8000/api/plates", this.objectToPush(i))
+            .then((response) => console.log(response));
         }
       }
       this.transformedDate = null;

@@ -2,7 +2,7 @@
   <v-container>
     <v-data-table
       :headers="headers"
-      :items="bookings"
+      :items="orders"
       :sort-by="['deliveryDate', 'userID']"
       :sort-desc="[false, true]"
       group-by="deliveryDate"
@@ -19,13 +19,13 @@
           </v-icon>
           <i style="font-size:16px; padding-left:8px"
             >{{ weekdayFromUnix(items[0].deliveryDate) }}
-            {{ dateFromUnix(items[0].deliveryDate) }} </i
-          >
+            {{ dateFromUnix(items[0].deliveryDate) }}
+          </i>
         </th>
       </template>
 
-      <template v-slot:item.timestamp="{ item }">
-        {{ dateFromUnix(item.timestamp) }}
+      <template v-slot:item.timeStamp="{ item }">
+        {{ dateFromUnix(item.timeStamp) }}
       </template>
 
       <template v-slot:item.plateID="{ item }">
@@ -51,6 +51,8 @@ export default {
   mixins: [fakeDB, functions],
 
   data: () => ({
+    orders: [],
+    plates: [],
     headers: [
       {
         text: "Jour",
@@ -79,12 +81,28 @@ export default {
       },
       {
         text: "Date de reservation",
-        value: "timestamp",
+        value: "timeStamp",
         sortable: false,
         groupable: false,
       },
     ],
   }),
+
+  async mounted() {
+    try {
+      //Connect to API
+      const axios = require("axios");
+      //Wait the response and pass the url
+      const result1 = await axios.get("http://localhost:8000/api/orders");
+      const result2 = await axios.get("http://localhost:8000/api/plates");
+      this.orders = result1.data;
+      this.plates = result2.data;
+      console.log(this.orders)
+      console.log(this.plates)
+    } catch (e) {
+      console.log(e);
+    }
+  },
 };
 </script>
 
