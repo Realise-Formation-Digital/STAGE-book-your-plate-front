@@ -135,10 +135,12 @@ export default {
       color: #30ac7c;
       background-color: #f9f9f9;
     }
+    
+    /* Modal background-color */
     .right {
       padding: 30px;
       box-sizing: border-box;
-      background: #30ac7c;
+      background: #009db2;
       color: #fff;
       h2 {
         text-align: center;

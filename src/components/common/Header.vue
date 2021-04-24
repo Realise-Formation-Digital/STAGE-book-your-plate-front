@@ -5,7 +5,6 @@
         <!-- logo Réalise -->
         <router-link to="/">
           <img
-            to="/"
             id="logo"
             src="../../assets/logo-Réalise.svg"
             alt="logo"
@@ -15,17 +14,30 @@
         <!-- buttons-------------------------------------------------------------------------------->
         <div>
           <nav class="navbar navbar-expand-lg fixed-top row">
-            
-              <router-link
-                  class="router"
-                  class-active="active"
-                  to="/ContactUs"
-                  exact
-                >
-                  <div class="btn">
+
+            <!-- Feedback -->
+            <router-link
+            class="btn router"
+            to="/ContactUs"
+            >
                     Feedback
-                  </div>
-              </router-link>
+            </router-link>
+
+            <!-- Plats -->
+               <router-link
+            class="btn router"
+            to="/Plates"
+            >
+                    Plats
+            </router-link>
+
+            <!-- Réservations -->
+              <router-link
+            class="btn router"
+            to="/Bookings"
+            >
+                    Réservations
+            </router-link>
               
           </nav>
         </div>
@@ -69,6 +81,7 @@
       ></v-app-bar-nav-icon>
     </v-app-bar>
 
+    <!-- Navigation Drawer -->
     <v-navigation-drawer
       v-if="drawer"
       class="v-navigation-drawer"
@@ -83,10 +96,49 @@
           v-model="group"
           active-class="dark--text text--accent-4"
         >
+          
+          <!-- Plates -->
+          <v-list-item to="/Plates">
+            <v-list-item-icon>
+              <v-icon
+              color="yellow darken-2"
+              >mdi-noodles</v-icon>
+            </v-list-item-icon>
+            
+            <v-list-item-title>
+                <div>
+                  <h1>Plats</h1>
+                </div>
+            </v-list-item-title>
 
+          </v-list-item>
+          
+          <!-- Réservations -->
+          <v-list-item to="/Bookings">
+            <v-list-item-icon>
+              <v-icon
+              color="red"
+              >mdi-cart-outline</v-icon>
+            </v-list-item-icon>
+            
+            <v-list-item-title>
+                <div>
+                  <h1>Réservations</h1>
+                </div>
+            </v-list-item-title>
+
+          </v-list-item>
+          
+          <!-- Feedback -->
           <v-list-item to="/ContactUs">
             <v-list-item-icon>
-              <v-icon>mdi-account</v-icon>
+              <v-icon
+              large
+              role="img"
+              color="blue darken-2"
+              >
+              mdi-message-text
+              </v-icon>
             </v-list-item-icon>
             
             <v-list-item-title>
@@ -97,6 +149,7 @@
 
           </v-list-item>
           
+          
         </v-list-item-group>
       </v-list>
     </v-navigation-drawer>
@@ -104,6 +157,7 @@
 </template>
 
 <script>
+
 import LoginModal from "./LoginModal";
 
 export default {
@@ -123,26 +177,24 @@ export default {
 /* nav Button */
 nav .btn:hover,
 nav .btn:active {
+  color: #b83030;
   background-color: #009db2;
   cursor: pointer;
   transition: 0.3s;
-}
-
-.router {
-  text-decoration: none;
-  color: rgb(0, 0, 0);
-  font-size: 25px;
-  font-weight: 500;
-  
-}
-
-.router:hover{
   color: white;
 }
 
 .btn {
+  text-decoration: none;
+  color: #032e5a;
+  font-size: 20px;
+  font-weight: 400;
+  height: 70px;
+  line-height: 35px;
+  padding: 0px 21px;
   margin-top: 3px;
   padding: 15px 15px 15px 15px;
+  margin-left: 20px;
   border-radius: 2%;
 }
 
